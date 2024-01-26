@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class BrainGame : MonoBehaviour
 {
     [Header("Questions")]
-    public Questions[] questions;
+    [SerializeField] private string[] questions;
+    [SerializeField] private int[] answers;
 
     [Space]
 
@@ -19,23 +20,52 @@ public class BrainGame : MonoBehaviour
     [Header("Object refs")]
     public TextMeshProUGUI playerQuestion;
     public TextMeshProUGUI enemyQuestion;
+    public TextMeshProUGUI playerQuestionCounter;
+    public TextMeshProUGUI enemyQuestionCounter;
     public TMP_InputField inputField;
 
     #region Private Var
     private int playerIndex = 0;
     private int enemyIndex = 0;
+
+    private float timeToNextSolve;
     #endregion
 
     private void Awake()
     {
         inputField.Select();
 
-        playerQuestion.text = questions[0].question;
-        enemyQuestion.text = questions[0].question;
+        playerQuestion.text = questions[0];
+        enemyQuestion.text = questions[0];
+
+        playerQuestionCounter.text = "Questions Left: " + questions.Length.ToString();
+        enemyQuestionCounter.text = "Questions Left: " + questions.Length.ToString();
+
+        timeToNextSolve = solvingInterval;
     }
     void Update()
     {
-        
+        if (enemyIndex == questions.Length || playerIndex == questions.Length)
+        {
+            GameOver();
+        }
+
+        if (timeToNextSolve < Time.time)
+        {
+            EnemySolve();
+        }
+    }
+
+    private void GameOver()
+    {
+        // I dunno do sth
+        // Transition to next date?
+    }
+    private void EnemySolve()
+    {
+        timeToNextSolve += solvingInterval;
+        enemyQuestion.text = questions[++enemyIndex];
+        enemyQuestionCounter.text = "Questions Left: " + (questions.Length - enemyIndex).ToString();
     }
 
     public void CheckInput()
@@ -49,11 +79,14 @@ public class BrainGame : MonoBehaviour
 
         if (CheckAnswer(playerIndex, int.Parse(inputField.text)))
         {
-            playerQuestion.text = questions[++playerIndex].question;
+            playerQuestion.text = questions[++playerIndex];
+            playerQuestionCounter.text = "Questions Left: " + (questions.Length - playerIndex).ToString();
         }
         else
         {
             // Play wrong answer audio or something
+            // Show cross
+            // Cannot interact for about 0.5s
         }
 
         inputField.text = string.Empty;
@@ -61,6 +94,6 @@ public class BrainGame : MonoBehaviour
     }
     private bool CheckAnswer(int questionIndex, int answer)
     {
-        return questions[questionIndex].answer == answer;
+        return answers[questionIndex] == answer;
     }
 }
