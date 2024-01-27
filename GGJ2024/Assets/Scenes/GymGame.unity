@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &192951753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 192951755}
-  - component: {fileID: 192951754}
-  m_Layer: 0
-  m_Name: DELETE AFTER TEST
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &192951754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192951753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6570ad064f58574a94dc416055b4103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &192951755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192951753}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 282, y: 158.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493542772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1156,8 @@ MonoBehaviour:
   - {fileID: 1981967916717640781, guid: f72eaf6a76dc8e44286163afb1faee16, type: 3}
   promptPanel: {fileID: 819680622}
   timer: {fileID: 850067764}
-  transitionScreen: {fileID: 1796172098}
+  winTransitionScreen: {fileID: 1796172098}
+  loseTransitionScreen: {fileID: 1598994138}
   idleSprite: {fileID: 760029008}
   successSprite: {fileID: 634651073}
 --- !u!4 &1596054375
@@ -1235,7 +1192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1598994139
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1454,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1796172099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,4 +1586,3 @@ SceneRoots:
   - {fileID: 1990716120}
   - {fileID: 1721733717}
   - {fileID: 1596054375}
-  - {fileID: 192951755}
