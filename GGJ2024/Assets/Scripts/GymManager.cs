@@ -15,6 +15,8 @@ public class GymManager : MonoBehaviour
     [SerializeField] private GameObject promptPanel;
     [SerializeField] private Slider timer;
     [SerializeField] private GameObject transitionScreen;
+    [SerializeField] private GameObject idleSprite;
+    [SerializeField] private GameObject successSprite;
 
     #region Private Variables
     private int[] inputs;
@@ -70,6 +72,7 @@ public class GymManager : MonoBehaviour
 
             if (currentPrompts[0] != null && CheckFinalInput())
             {
+                StartCoroutine(PlaySuccessAnim());
                 PlayerPrefs.SetInt("CurrentScore", PlayerPrefs.GetInt("CurrentScore") + 1);
             }
 
@@ -79,6 +82,16 @@ public class GymManager : MonoBehaviour
         timer.value -= Time.deltaTime;
     }
 
+    private IEnumerator PlaySuccessAnim()
+    {
+        idleSprite.SetActive(false);
+        successSprite.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        idleSprite.SetActive(true);
+        successSprite.SetActive(false);
+    }
     private bool CheckFinalInput()
     {
         // All green, score +1;
