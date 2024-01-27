@@ -7,19 +7,34 @@ using Unity.VisualScripting;
 
 public class TypingManager : MonoBehaviour
 {
+    [Header("Question Setting")]
     [SerializeField] private TextMeshProUGUI questionText;
 
     [SerializeField] private string[] question;
     [SerializeField] private string[] answer;
+
+    [Header("Bird Sprite")]
+    [SerializeField] private GameObject bird;
+    [SerializeField] private Sprite defaultSprite;
+    [SerializeField] private Sprite correct;
+    [SerializeField] private Sprite mistake;
 
     private string qString;
     private string aString;
 
     private int questionIndex = 0;
     private int inputNum;
+
+    private SpriteRenderer birdSR;
     // Start is called before the first frame update
     void Start()
     {
+        if(question.Length != answer.Length)
+        {
+            Debug.LogError("Question and Answer number must be equale");
+        }
+
+        birdSR = bird.GetComponent<SpriteRenderer>();
         Output();
     }
 
@@ -27,17 +42,18 @@ public class TypingManager : MonoBehaviour
     void Update()
     {
         // check the letter one by one
-        if(Input.GetKeyDown(aString[inputNum].ToString())) 
+        if(Input.GetKeyDown(aString[inputNum].ToString()))
         {
             Correct();
 
-            if(inputNum >= question[questionIndex].Length)
-            {
-                questionIndex++;
-                Output();
-            }
+            Debug.Log(inputNum);
+            //if(inputNum >= answer[questionIndex].Length)
+            //{
+            //    questionIndex++;
+            //    Output();
+            //}
         }   
-        else if(Input.anyKeyDown)
+        else if(Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
         {
             Failed();
         }
@@ -47,28 +63,52 @@ public class TypingManager : MonoBehaviour
     {
         inputNum = 0;
 
-        if(question.Length < questionIndex)
+        // just avoid error
+        if(question.Length <= questionIndex)
         {
             questionIndex = 0;
         }
 
         qString = question[questionIndex];
         aString = answer[questionIndex];
+
         questionText.text = qString;
     }
 
     void Correct()
     {
         inputNum++;
-        questionText.text = "<color=#FFFFFF>" + qString.Substring(0, inputNum) +"</color>"+ qString.Substring(inputNum);
+        if (inputNum >= answer[questionIndex].Length)
+        {
+            questionIndex++;
+            Output();
+            return;
+        }
+
+        if (aString[inputNum].ToString() == " ")
+        {
+            inputNum++;
+        }
+
+        // change textColor
+        questionText.text = "<color=#FFFFFF>" + qString.Substring(0, inputNum) +"</color>"+
+             "<color=#FFFF00>" + qString.Substring(inputNum, 1) + "</color>" +
+             qString.Substring(inputNum + 1);
+
+        birdSR.sprite = correct;
 
         Debug.Log("correct");
+
     }
 
     void Failed()
     {
+        // change textColor
         questionText.text = "<color=#FFFFFF>" + qString.Substring(0, inputNum) + "</color>" +
-            "<color=#FFFFFF>" + qString.Substring(inputNum, 1) + "</color>" + qString.Substring(inputNum + 1);
+            "<color=#FF0000>" + qString.Substring(inputNum, 1) + "</color>" +
+            qString.Substring(inputNum + 1);
+
+        birdSR.sprite = mistake;
 
         Debug.Log("failed");
     }
