@@ -15,17 +15,22 @@ public class TypingManager : MonoBehaviour
 
     [Header("Bird Sprite")]
     [SerializeField] private GameObject bird;
-    [SerializeField] private Sprite defaultSprite;
-    [SerializeField] private Sprite correct;
-    [SerializeField] private Sprite mistake;
+    [SerializeField] private Sprite[] correctSprite = new Sprite[4];
+
+    [Space]
+    [SerializeField] private Sprite[] mistakeSprite = new Sprite[3];
 
     private string qString;
     private string aString;
 
     private int questionIndex = 0;
+    private int spriteIndex = 0;
     private int inputNum;
 
+    private bool[] isMistake;
     private SpriteRenderer birdSR;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +39,16 @@ public class TypingManager : MonoBehaviour
             Debug.LogError("Question and Answer number must be equale");
         }
 
+        isMistake = new bool[question.Length];
+        for(int i = 0; i < question.Length; i++)
+        {
+            isMistake[i] = false;
+        }
+
         birdSR = bird.GetComponent<SpriteRenderer>();
+        birdSR.sprite = correctSprite[spriteIndex];
+
+
         Output();
     }
 
@@ -45,8 +59,6 @@ public class TypingManager : MonoBehaviour
         if(Input.GetKeyDown(aString[inputNum].ToString()))
         {
             Correct();
-
-            Debug.Log(inputNum);
             //if(inputNum >= answer[questionIndex].Length)
             //{
             //    questionIndex++;
@@ -75,12 +87,28 @@ public class TypingManager : MonoBehaviour
         questionText.text = qString;
     }
 
-    void Correct()
+    private void Correct()
     {
         inputNum++;
+
         if (inputNum >= answer[questionIndex].Length)
         {
+            ChangeSprite();
             questionIndex++;
+
+            //if (questionIndex == 1)
+            //{
+            //    birdSR.sprite = r2Correct;
+            //}
+            //else if(questionIndex == 2)
+            //{
+            //    birdSR.sprite = r3Correct;
+            //}
+            //else if(questionIndex == 3)
+            //{
+            //    birdSR.sprite = last;
+            //}
+
             Output();
             return;
         }
@@ -95,21 +123,30 @@ public class TypingManager : MonoBehaviour
              "<color=#FFFF00>" + qString.Substring(inputNum, 1) + "</color>" +
              qString.Substring(inputNum + 1);
 
-        birdSR.sprite = correct;
-
-        Debug.Log("correct");
-
     }
 
-    void Failed()
+    private void Failed()
     {
+        isMistake[questionIndex] = true;
+
+
         // change textColor
         questionText.text = "<color=#FFFFFF>" + qString.Substring(0, inputNum) + "</color>" +
             "<color=#FF0000>" + qString.Substring(inputNum, 1) + "</color>" +
             qString.Substring(inputNum + 1);
+    }
 
-        birdSR.sprite = mistake;
+    private void ChangeSprite()
+    {
+        if (isMistake[questionIndex])
+        {
+            birdSR.sprite = mistakeSprite[spriteIndex];
+        }
+        else
+        {
+            spriteIndex++;
 
-        Debug.Log("failed");
+            birdSR.sprite = correctSprite[spriteIndex];
+        }
     }
 }
