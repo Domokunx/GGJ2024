@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
         // Load next date
         SceneManager.LoadScene(nextDate++);
-        
+        StopAllCoroutines();
     }
     public static IEnumerator BackToOutfitSelector(GameObject transition)
     {
@@ -36,5 +36,10 @@ public class GameManager : MonoBehaviour
         // Move back to outfitSelector
         
         SceneManager.LoadScene("OutfitSelector");
+    }
+
+    private void ResetVariables()
+    {
+        
     }
 }

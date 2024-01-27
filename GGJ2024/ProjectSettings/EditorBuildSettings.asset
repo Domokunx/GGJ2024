@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrainGame.unity
     guid: fac4829bf4a488f45b80a4d3889ded36
+  - enabled: 1
+    path: Assets/Scenes/PickYourDateScene.unity
+    guid: daae27ad45bcbe843a3ad061aa22edb5
   m_configObjects: {}
