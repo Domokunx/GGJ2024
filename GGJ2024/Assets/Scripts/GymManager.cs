@@ -60,9 +60,7 @@ public class GymManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (elementIndex == promptLength) elementIndex = 0;
-
+    { 
         CheckKeyPress();
 
         // Timer for prompt change
@@ -115,7 +113,17 @@ public class GymManager : MonoBehaviour
     }
     private void CheckKeyPress()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && inputs[elementIndex] == 276)
+        if (Input.anyKeyDown && promptLength == elementIndex)
+        {
+            // Reset Color
+            foreach (GameObject go in currentPrompts)
+            {
+                go.GetComponent<Image>().color = Color.black;
+            }
+            // Reset index
+            elementIndex = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && inputs[elementIndex] == 276)
         {
             Debug.Log("Left Checked");
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
@@ -137,7 +145,7 @@ public class GymManager : MonoBehaviour
             Debug.Log("Up Checked");
 
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
-        } else if (Input.anyKeyDown)
+        } else if (currentPrompts[0] != null && Input.anyKeyDown)
         {
             // Reset Color
             foreach (GameObject go in currentPrompts)

@@ -5,11 +5,8 @@ using TMPro;
 
 public class BrainGame : MonoBehaviour
 {
-    [Header("Questions")]
-    [SerializeField] private string[] questions;
-    [SerializeField] private int[] answers;
-
-    [Space]
+    [Header("Difficulty Settings")]
+    [SerializeField] private int questionCount;
 
     [Header("Enemy Settings")]
     [SerializeField] private float solvingInterval = 2f;
@@ -22,28 +19,94 @@ public class BrainGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerQuestionCounter;
     [SerializeField] private TextMeshProUGUI enemyQuestionCounter;
     [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private GameObject transitionScreen;
+    [SerializeField] private GameObject winTransitionScreen;
+    [SerializeField] private GameObject loseTransitionScreen;
 
     #region Private Var
     private int playerIndex = 0;
     private int enemyIndex = 0;
 
     private float timeToNextSolve;
+
+    private readonly string[] questions = new string[]
+    {
+        "2 + 2",
+        "4 + 4",
+        "8 + 8",
+        "8 / 2",
+        "7 + 4",
+        "2 - 1",
+        "0 + 0",
+        "6 + 5",
+        "8 / 4",
+        "4 * 7",
+        "1 * 2",
+        "4 * 3",
+        "9 - 8",
+        "10 + 1",
+        "3 * 7",
+        "4 + 12",
+        "8 - 2",
+        "14 / 2",
+        "18 / 3",
+        "6 + 1",
+        "2 - 2",
+        "3 + 4",
+        "8 * 1",
+        "9 + 9"
+
+    };
+    private readonly string[] answers = new string[]
+    {
+        "4",
+        "8",
+        "16",
+        "4",
+        "11",
+        "1",
+        "0 ",
+        "11",
+        "2",
+        "28",
+        "2",
+        "12",
+        "1",
+        "11",
+        "21",
+        "16",
+        "6",
+        "7",
+        "6",
+        "7",
+        "0",
+        "7",
+        "8",
+        "18"
+
+    };
+
+    private int[] questionIndices;
     #endregion
 
     private void Awake()
     {
         inputField.Select();
 
-        playerQuestion.text = questions[0];
-        enemyQuestion.text = questions[0];
+        questionIndices = new int[questionCount];
+        for (int i = 0; i < questionCount; i++)
+        {
+            questionIndices[i] = Random.Range(0, questions.Length);
+        }
 
-        playerQuestionCounter.text = "Questions Left: " + questions.Length.ToString();
-        enemyQuestionCounter.text = "Questions Left: " + questions.Length.ToString();
+        playerQuestionCounter.text = "Questions Left: " + questionCount.ToString();
+        enemyQuestionCounter.text = "Questions Left: " + questionCount.ToString();
+
+        playerQuestion.text = questions[questionIndices[0]];
+        enemyQuestion.text = questions[questionIndices[0]];
 
         timeToNextSolve = solvingInterval;
 
-        transitionScreen.SetActive(false);
+        winTransitionScreen.SetActive(false);
     }
     void Update()
     {
@@ -53,26 +116,19 @@ public class BrainGame : MonoBehaviour
         }
     }
 
-    private void GameOver()
-    {
-                // Transition Scene tbc
-                // Move back to outfitSelector
-        StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
-    }
     private void EnemySolve()
     {
         timeToNextSolve += solvingInterval;
 
-        if (enemyIndex + 1 ==  questions.Length)
+        if (enemyIndex + 1  ==  questionCount)
         {
-            GameOver();
+            StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
             return;
         }
 
-        enemyQuestion.text = questions[++enemyIndex];
-        enemyQuestionCounter.text = "Questions Left: " + (questions.Length - enemyIndex).ToString();
+        enemyQuestion.text = questions[questionIndices[++enemyIndex]];
+        enemyQuestionCounter.text = "Questions Left: " + (questionCount - enemyIndex).ToString();
     }
-
     public void CheckInput()
     {
         if (string.IsNullOrWhiteSpace(inputField.text))
@@ -84,14 +140,16 @@ public class BrainGame : MonoBehaviour
 
         if (CheckAnswer(playerIndex, int.Parse(inputField.text)))
         {
-            if (playerIndex + 1 == questions.Length) 
+            if (playerIndex + 1 == questionCount) 
             {
-                GameOver(); // Might replace with a GameWin() to load different ending
+                PlayerPrefs.SetInt("Rizz", PlayerPrefs.GetInt("Rizz") + 1);
+                StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
+                timeToNextSolve = 999999f;
                 return;
             }
 
-            playerQuestion.text = questions[++playerIndex];
-            playerQuestionCounter.text = "Questions Left: " + (questions.Length - playerIndex).ToString();
+            playerQuestion.text = questions[questionIndices[++playerIndex]];
+            playerQuestionCounter.text = "Questions Left: " + (questionCount - playerIndex).ToString();
         }
         else
         {
@@ -105,6 +163,6 @@ public class BrainGame : MonoBehaviour
     }
     private bool CheckAnswer(int questionIndex, int answer)
     {
-        return answers[questionIndex] == answer;
+        return int.Parse(answers[questionIndices[questionIndex]]) == answer;
     }
 }
