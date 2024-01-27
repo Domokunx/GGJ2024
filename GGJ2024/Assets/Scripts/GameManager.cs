@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         // Move back to outfitSelector
-        transition.SetActive(false);
+        
         SceneManager.LoadScene(1);
     }
 }

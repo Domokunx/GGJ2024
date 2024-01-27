@@ -15,18 +15,17 @@ public class SelectDupe : MonoBehaviour
 
     private GameObject hitObject;
     private Spawner spawner;
-
-    private bool isCorrect;
-    private bool isMistake;
     private bool finished;
 
     private int correctCount;
 
     private Camera camera;
 
-    private bool zoomed;
+    private float zoomTimer;
 
-    private float timer;
+    private CountDown countDown;
+
+    [SerializeField] private GameObject transitionScreen;
 
     enum State
     {
@@ -40,22 +39,24 @@ public class SelectDupe : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isMistake = false;
-        isCorrect = false;
         finished = false;
         hitObject = null;
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
+        countDown = this.GetComponent<CountDown>();
         finishText.SetActive(false);
         camera = Camera.main;
-        zoomed = false;
 
         state = State.Idle;
-        timer = 0f;
+        zoomTimer = 0f;
+
+        transitionScreen.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!countDown.GetCountDownFinished()) return;
+
         switch (state)
         {
             case State.Idle:
@@ -64,6 +65,8 @@ public class SelectDupe : MonoBehaviour
                     if (finished)
                     {
                         finishText.SetActive(true);
+                        GameFinsished();
+
                         return;
                     }
 
@@ -103,12 +106,10 @@ public class SelectDupe : MonoBehaviour
 
             if (hitObject.tag != "Date")
             {
-                isMistake = true;
                 Destroy(hitObject);
             }
             else
             {
-                isCorrect = true;
                 correctCount++;
 
                 // change state
@@ -139,9 +140,9 @@ public class SelectDupe : MonoBehaviour
         camera.transform.position = Vector3.Lerp(camera.transform.position, targetPos, zoomTime);
         camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, zoomInSize, zoomTime);
 
-        timer += Time.deltaTime;
+        zoomTimer += Time.deltaTime;
 
-        if (timer > 2.0f)
+        if (zoomTimer > 2.0f)
         {
             Destroy(hitObject);
 
@@ -156,7 +157,7 @@ public class SelectDupe : MonoBehaviour
             }
 
             state = State.ZoomOut;
-            timer = 0f;
+            zoomTimer = 0f;
 
         }
     }
@@ -199,13 +200,19 @@ public class SelectDupe : MonoBehaviour
         camera.transform.position = Vector3.Lerp(camera.transform.position, new Vector3(0f, 0f, camera.transform.position.z), zoomTime);
         camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, zoomOutSize, zoomTime);
 
-        timer += Time.deltaTime;
+        zoomTimer += Time.deltaTime;
 
-        if (timer > 0.5f)
+        if (zoomTimer > 0.5f)
         {
             state = State.Idle;
-            timer = 0f;
+            zoomTimer = 0f;
 
         }
     }
+
+    private void GameFinsished()
+    {
+        StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+    }
+
 }
