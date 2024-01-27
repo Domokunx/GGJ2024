@@ -212,6 +212,8 @@ public class SelectDupe : MonoBehaviour
 
     private void GameFinsished()
     {
+        GameManager.rizzed[1] = true;
+
         StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
     }
 

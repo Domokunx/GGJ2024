@@ -66,7 +66,7 @@ public class TypingManager : MonoBehaviour
     {
         if (finished)
         {
-            StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+            FinishGame();
             return;
         }
         // check the letter one by one
@@ -110,20 +110,6 @@ public class TypingManager : MonoBehaviour
         {
             ChangeSprite();
             questionIndex++;
-
-            //if (questionIndex == 1)
-            //{
-            //    birdSR.sprite = r2Correct;
-            //}
-            //else if(questionIndex == 2)
-            //{
-            //    birdSR.sprite = r3Correct;
-            //}
-            //else if(questionIndex == 3)
-            //{
-            //    birdSR.sprite = last;
-            //}
-
             Output();
             return;
         }
@@ -163,5 +149,11 @@ public class TypingManager : MonoBehaviour
 
             birdSR.sprite = correctSprite[spriteIndex];
         }
+    }
+
+    private void FinishGame()
+    {
+        GameManager.rizzed[0] = true;
+        StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
     }
 }

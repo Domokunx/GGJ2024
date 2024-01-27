@@ -28,4 +28,9 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             currentItem.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         }
     }
+
+    public GameObject GetCurrentItem()
+    {
+        return currentItem;
+    }
 }
