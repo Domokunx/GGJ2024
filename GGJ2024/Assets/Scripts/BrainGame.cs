@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class BrainGame : MonoBehaviour
 {
@@ -45,11 +44,6 @@ public class BrainGame : MonoBehaviour
     }
     void Update()
     {
-        if (enemyIndex == questions.Length || playerIndex == questions.Length)
-        {
-            GameOver();
-        }
-
         if (timeToNextSolve < Time.time)
         {
             EnemySolve();
@@ -58,12 +52,20 @@ public class BrainGame : MonoBehaviour
 
     private void GameOver()
     {
-        // I dunno do sth
-        // Transition to next date?
+        // Transition Scene tbc
+        // Move back to outfitSelector
+        GameManager.backToOutfitSelector();
     }
     private void EnemySolve()
     {
         timeToNextSolve += solvingInterval;
+
+        if (enemyIndex + 1 ==  questions.Length)
+        {
+            GameOver();
+            return;
+        }
+
         enemyQuestion.text = questions[++enemyIndex];
         enemyQuestionCounter.text = "Questions Left: " + (questions.Length - enemyIndex).ToString();
     }
@@ -79,6 +81,12 @@ public class BrainGame : MonoBehaviour
 
         if (CheckAnswer(playerIndex, int.Parse(inputField.text)))
         {
+            if (playerIndex + 1 == questions.Length) 
+            {
+                GameOver(); // Might replace with a GameWin() to load different ending
+                return;
+            }
+
             playerQuestion.text = questions[++playerIndex];
             playerQuestionCounter.text = "Questions Left: " + (questions.Length - playerIndex).ToString();
         }
