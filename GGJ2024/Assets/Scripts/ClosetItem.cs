@@ -12,8 +12,8 @@ public class ClosetItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject characterArea;
 
-    private GameObject dragItem;
-    [HideInInspector] public RectTransform itemRT;
+    [HideInInspector] public GameObject dragItem;
+    private RectTransform itemRT;
     private void Awake()
     {
         Instance = this;

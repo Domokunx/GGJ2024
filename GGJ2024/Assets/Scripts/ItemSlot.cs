@@ -5,32 +5,27 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    private RectTransform currentItem;
+    private GameObject currentItem;
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Item Detected");
 
+        if (!eventData.pointerDrag.CompareTag(tag))
+        {
+            Debug.Log("Wrong tag");
+            Destroy(eventData.pointerDrag.GetComponent<ClosetItem>().dragItem);
+            return;
+        }
+
         if (currentItem != null)
         {
-            Destroy(currentItem.gameObject);
+            Destroy(currentItem);
         }
 
         if (eventData.pointerDrag != null)
         {
-            currentItem = eventData.pointerDrag.GetComponent<ClosetItem>().itemRT;
-            currentItem.anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            currentItem = eventData.pointerDrag.GetComponent<ClosetItem>().dragItem;
+            currentItem.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
