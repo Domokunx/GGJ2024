@@ -15,12 +15,6 @@ public class OutfitSelectorManager : MonoBehaviour
         infoImg.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ShowInfo()
     {
         infoImg.SetActive(true);
