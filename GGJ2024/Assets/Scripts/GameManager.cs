@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static IEnumerator MoveToNextDate()
+    public void MoveToNext()
+    {
+        StartCoroutine(MoveToNextDate());
+    }
+    private IEnumerator MoveToNextDate()
     {
         // Play transition for 5s
         yield return new WaitForSeconds(4f);

@@ -13,5 +13,15 @@ public class PickYourDateManager : MonoBehaviour
         {
             btn.interactable = false;
         }
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (GameManager.rizzed[i])
+            {
+                buttons[i].interactable = true;
+            }
+        }
     }
+
+
 }
