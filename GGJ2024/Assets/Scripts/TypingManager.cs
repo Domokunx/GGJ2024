@@ -7,6 +7,8 @@ using Unity.VisualScripting;
 
 public class TypingManager : MonoBehaviour
 {
+    [SerializeField] private GameObject transitionScreen;
+
     [Header("Question Setting")]
     [SerializeField] private TextMeshProUGUI questionText;
 
@@ -24,11 +26,13 @@ public class TypingManager : MonoBehaviour
     private string aString;
 
     private int questionIndex = 0;
-    private int spriteIndex = 0;
+    private int spriteIndex = 0;    // this can be score
     private int inputNum;
 
-    private bool[] isMistake;
+    private bool isMistake;
     private SpriteRenderer birdSR;
+
+    private bool finished;
 
 
     // Start is called before the first frame update
@@ -39,14 +43,19 @@ public class TypingManager : MonoBehaviour
             Debug.LogError("Question and Answer number must be equale");
         }
 
-        isMistake = new bool[question.Length];
-        for(int i = 0; i < question.Length; i++)
-        {
-            isMistake[i] = false;
-        }
+        transitionScreen.SetActive(false);
+
+        //isMistake = new bool[question.Length];
+        //for(int i = 0; i < question.Length; i++)
+        //{
+        //    isMistake[i] = false;
+        //}
+        isMistake = false;
 
         birdSR = bird.GetComponent<SpriteRenderer>();
         birdSR.sprite = correctSprite[spriteIndex];
+
+        finished = false;
 
 
         Output();
@@ -55,6 +64,11 @@ public class TypingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (finished)
+        {
+            StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+            return;
+        }
         // check the letter one by one
         if(Input.GetKeyDown(aString[inputNum].ToString()))
         {
@@ -78,7 +92,8 @@ public class TypingManager : MonoBehaviour
         // just avoid error
         if(question.Length <= questionIndex)
         {
-            questionIndex = 0;
+            finished = true;
+            return;
         }
 
         qString = question[questionIndex];
@@ -127,7 +142,7 @@ public class TypingManager : MonoBehaviour
 
     private void Failed()
     {
-        isMistake[questionIndex] = true;
+        isMistake = true;
 
 
         // change textColor
@@ -138,7 +153,7 @@ public class TypingManager : MonoBehaviour
 
     private void ChangeSprite()
     {
-        if (isMistake[questionIndex])
+        if (isMistake)
         {
             birdSR.sprite = mistakeSprite[spriteIndex];
         }
