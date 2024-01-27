@@ -7,6 +7,10 @@ TagManager:
   - Hat
   - Clothes
   - Shoe
+  - Up
+  - Down
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX
