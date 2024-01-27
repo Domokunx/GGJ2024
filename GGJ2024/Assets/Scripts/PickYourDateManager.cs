@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class PickYourDateManager : MonoBehaviour
 {
-    [SerializeField] private Button[] buttons;
+    [SerializeField] private Toggle[] toggles;
+
+    private bool[] selected;
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Button btn in buttons)
+        foreach (Toggle btn in toggles)
         {
             btn.interactable = false;
         }
 
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < toggles.Length; i++)
         {
             if (GameManager.rizzed[i])
             {
-                buttons[i].interactable = true;
+                toggles[i].interactable = true;
             }
         }
     }

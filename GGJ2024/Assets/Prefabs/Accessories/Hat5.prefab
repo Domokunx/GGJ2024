@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2377381748695427299}
   - component: {fileID: 6492065383579726476}
   m_Layer: 5
-  m_Name: Hat3
+  m_Name: Hat5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b0e28812dc5c8a649aabd66db7dea71f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 297d61df1c2ec834aa55f0a73fc59988, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
