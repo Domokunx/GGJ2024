@@ -402,7 +402,7 @@ MonoBehaviour:
   - {fileID: 1981967916717640781, guid: 84325d6ffefa93c409755a5ab312b0d6, type: 3}
   - {fileID: 1981967916717640781, guid: d3e253420ce36d246bf85c3b4ca29dcc, type: 3}
   - {fileID: 1981967916717640781, guid: f72eaf6a76dc8e44286163afb1faee16, type: 3}
-  promptDisplays: []
+  promptPanel: {fileID: 819680622}
 --- !u!4 &1596054375
 Transform:
   m_ObjectHideFlags: 0

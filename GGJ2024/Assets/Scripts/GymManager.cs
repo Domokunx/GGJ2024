@@ -21,6 +21,8 @@ public class GymManager : MonoBehaviour
     private float timeToNextPrompt;
 
     private int inputIndex;
+
+    private GameObject[] currentPrompts;
     #endregion
 
     // Left = 276, Right = 275, Down = 274, Up = 273
@@ -30,12 +32,13 @@ public class GymManager : MonoBehaviour
     {
         // Initialise Variables
         FIRST_ELEMENT_XPOSITION = -450;
-        LAST_ELEMENT_XPOSITION = 450;
+        LAST_ELEMENT_XPOSITION = 500;
         inputIndex = 0;
         timeToNextPrompt = 0;
 
         // Initialise Array
         inputs = new int[rounds][];
+        currentPrompts = new GameObject[promptLength];
 
         // Generate Inputs
         GeneratePrompts();
@@ -47,7 +50,14 @@ public class GymManager : MonoBehaviour
     {
         if (timeToNextPrompt < Time.time) 
         {
+            if (inputIndex + 1 == rounds)
+            {
+                GameManager.backToOutfitSelector();
+                return;
+            }
+
             timeToNextPrompt += promptTime;
+            ResetPrompt();
             GeneratePromptUI();
             inputIndex++;
         }
@@ -96,7 +106,7 @@ public class GymManager : MonoBehaviour
         {
             Vector2 elementPosition = new Vector2(Mathf.Lerp(FIRST_ELEMENT_XPOSITION,
                                                              LAST_ELEMENT_XPOSITION,
-                                                             i / promptLength),
+                                                             (float) i / promptLength),
                                                           0);
 
             GameObject go;
@@ -104,24 +114,34 @@ public class GymManager : MonoBehaviour
             {
                 case 273:
                     go = Instantiate(promptElements[3], promptPanel.transform);
-                    go.transform.position = elementPosition;
+                    go.GetComponent<RectTransform>().anchoredPosition = elementPosition;
+                    currentPrompts[i] = go;
                     break;
 
                 case 274:
                     go = Instantiate(promptElements[2], promptPanel.transform);
-                    go.transform.position = elementPosition;
+                    go.GetComponent<RectTransform>().anchoredPosition = elementPosition;
+                    currentPrompts[i] = go;
                     break;
 
                 case 275:
                     go = Instantiate(promptElements[1], promptPanel.transform);
-                    go.transform.position = elementPosition;
+                    go.GetComponent<RectTransform>().anchoredPosition = elementPosition;
+                    currentPrompts[i] = go;
                     break;
 
                 case 276:
                     go = Instantiate(promptElements[0], promptPanel.transform);
-                    go.transform.position = elementPosition;
+                    go.GetComponent<RectTransform>().anchoredPosition = elementPosition;
+                    currentPrompts[i] = go;
                     break;
             }
+        }
+    }
+    private void ResetPrompt()
+    {
+        foreach (GameObject go in currentPrompts) {
+            Destroy(go);
         }
     }
 }
