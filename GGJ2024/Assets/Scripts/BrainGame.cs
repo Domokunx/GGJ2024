@@ -142,7 +142,7 @@ public class BrainGame : MonoBehaviour
         {
             if (playerIndex + 1 == questionCount) 
             {
-                PlayerPrefs.SetInt("Rizz", PlayerPrefs.GetInt("Rizz") + 1);
+                GameManager.rizzed[3] = true;
                 StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
                 timeToNextSolve = 999999f;
                 return;

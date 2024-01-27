@@ -76,7 +76,7 @@ public class GymManager : MonoBehaviour
             {
                 if (score >= (float) rounds / 2)
                 {
-                    PlayerPrefs.SetInt("Rizz", PlayerPrefs.GetInt("Rizz") + 1);
+                    GameManager.rizzed[2] = true;
                     StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
                 } else { 
                     StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
