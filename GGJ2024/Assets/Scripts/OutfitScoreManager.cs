@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using static UnityEditor.Progress;
 
 public class OutfitScoreManager : MonoBehaviour
 {
@@ -23,11 +24,12 @@ public class OutfitScoreManager : MonoBehaviour
     private int totalScore;
     private int currentDateNum;
 
-    bool isEquipHat;
-    bool isEquipCloth;
-    bool isEquipShoe;
+    bool partChanged;
 
     private const int MINIGAME_NUM = 4;
+    private const int PART_NUM = 3;
+
+    private string[] partName = new string[PART_NUM];
     // Start is called before the first frame update
     void Start()
     {
@@ -36,31 +38,17 @@ public class OutfitScoreManager : MonoBehaviour
 
         totalScore = 0;
 
-        isEquipHat = false;
-        isEquipCloth = false;
-        isEquipShoe = false;
+        partChanged = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isEquipHat)
-        {
-            if (ScoreCount(hat)) isEquipHat = true;
-            else isEquipHat = false;
-        }
-        
-        //if (!isEquipCloth)
-        //{
-        //    if (ScoreCount(cloth)) isEquipCloth = true;
-        //    else isEquipCloth = false;
-        //}
+        SetPartName(hat,0);
+        SetPartName(cloth,1);
+        SetPartName(shoe,2);
 
-        //if (!isEquipShoe)
-        //{
-        //    if (ScoreCount(hat)) isEquipShoe = true;
-        //    else isEquipShoe = false;
-        //}
+        CalculateScore();
 
         scoreText.text = "Score: " + totalScore.ToString();
     }
@@ -107,24 +95,37 @@ public class OutfitScoreManager : MonoBehaviour
         }
     }
 
-    bool ScoreCount(ItemSlot item)
+    void SetPartName(ItemSlot item, int partNum)
     {
-        if (item.GetCurrentItem() == null) return false;
+        if (item.GetCurrentItem() == null) return;
+        if (item.GetCurrentItem().name == partName[partNum]) return;
+        
+        partName[partNum] = item.GetCurrentItem().name;
+        partChanged = true;
+    }
 
-        Debug.Log(item.GetCurrentItem().name);
-        int outfitIndex = 0;
-        for (int i = 0; i < outfitsData.Count; i++)
+    void CalculateScore()
+    {
+        if (!partChanged) return;
+        
+        int[] outfitsIndex = new int[3]; 
+        for (int i = 0; i < PART_NUM; i++)
         {
-            if (outfitsData[i].name + "(Clone)" == item.GetCurrentItem().name)
+            for (int j = 0; j < outfitsData.Count; j++) 
             {
-                Debug.Log("correct name");
-                outfitIndex = i;
-                break;
+                if (outfitsData[j].name + "(Clone)" == partName[i])
+                {
+                    Debug.Log("correct name");
+                    outfitsIndex[i] = j;
+                    break;
+                }
+
             }
         }
+        int hatScore = outfitsData[outfitsIndex[0]].scoreMini[currentDateNum - 1];
+        int clothScore = outfitsData[outfitsIndex[1]].scoreMini[currentDateNum - 1];
+        int shoesScore = outfitsData[outfitsIndex[2]].scoreMini[currentDateNum - 1];
 
-        totalScore += outfitsData[outfitIndex].scoreMini[currentDateNum - 1];
-
-        return true;
+        totalScore = hatScore + clothScore + shoesScore; 
     }
 }
