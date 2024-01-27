@@ -17,11 +17,12 @@ public class BrainGame : MonoBehaviour
     [Space]
 
     [Header("Object refs")]
-    public TextMeshProUGUI playerQuestion;
-    public TextMeshProUGUI enemyQuestion;
-    public TextMeshProUGUI playerQuestionCounter;
-    public TextMeshProUGUI enemyQuestionCounter;
-    public TMP_InputField inputField;
+    [SerializeField] private TextMeshProUGUI playerQuestion;
+    [SerializeField] private TextMeshProUGUI enemyQuestion;
+    [SerializeField] private TextMeshProUGUI playerQuestionCounter;
+    [SerializeField] private TextMeshProUGUI enemyQuestionCounter;
+    [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private GameObject transitionScreen;
 
     #region Private Var
     private int playerIndex = 0;
@@ -41,6 +42,8 @@ public class BrainGame : MonoBehaviour
         enemyQuestionCounter.text = "Questions Left: " + questions.Length.ToString();
 
         timeToNextSolve = solvingInterval;
+
+        transitionScreen.SetActive(false);
     }
     void Update()
     {
@@ -52,9 +55,9 @@ public class BrainGame : MonoBehaviour
 
     private void GameOver()
     {
-        // Transition Scene tbc
-        // Move back to outfitSelector
-        GameManager.backToOutfitSelector();
+                // Transition Scene tbc
+                // Move back to outfitSelector
+        StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
     }
     private void EnemySolve()
     {

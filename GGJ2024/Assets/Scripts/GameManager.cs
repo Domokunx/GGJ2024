@@ -8,17 +8,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static IEnumerator BackToOutfitSelector(GameObject transition)
     {
-        
-    }
+        // Play transition for 5s
+        transition.SetActive(true);
+        yield return new WaitForSeconds(4f);
 
-    public static void backToOutfitSelector()
-    {
+        // Move back to outfitSelector
+        transition.SetActive(false);
         SceneManager.LoadScene(1);
     }
 }

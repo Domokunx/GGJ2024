@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GymManager : MonoBehaviour
 {
@@ -12,15 +13,20 @@ public class GymManager : MonoBehaviour
 
     [Space]
     [SerializeField] private GameObject promptPanel;
+    [SerializeField] private Slider timer;
+    [SerializeField] private GameObject transitionScreen;
+    [SerializeField] private GameObject idleSprite;
+    [SerializeField] private GameObject successSprite;
 
     #region Private Variables
-    private int[][] inputs;
+    private int[] inputs;
     private int FIRST_ELEMENT_XPOSITION;
     private int LAST_ELEMENT_XPOSITION;
 
     private float timeToNextPrompt;
 
     private int inputIndex;
+    private int elementIndex;
 
     private GameObject[] currentPrompts;
     #endregion
@@ -31,72 +37,143 @@ public class GymManager : MonoBehaviour
     void Start()
     {
         // Initialise Variables
+        timer.value = timer.maxValue = promptTime;
         FIRST_ELEMENT_XPOSITION = -450;
         LAST_ELEMENT_XPOSITION = 500;
         inputIndex = 0;
         timeToNextPrompt = 0;
+        elementIndex = 0;
+        transitionScreen.SetActive(false);
 
         // Initialise Array
-        inputs = new int[rounds][];
+        inputs = new int[promptLength];
         currentPrompts = new GameObject[promptLength];
 
         // Generate Inputs
-        GeneratePrompts();
-        
+        GeneratePrompts();        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (elementIndex == promptLength) elementIndex = 0;
+
+        CheckKeyPress();
+
+        // Timer for prompt change
         if (timeToNextPrompt < Time.time) 
         {
-            if (inputIndex + 1 == rounds)
+            if (inputIndex == rounds)
             {
-                GameManager.backToOutfitSelector();
+                StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+                timeToNextPrompt += Time.time;
                 return;
             }
 
-            timeToNextPrompt += promptTime;
-            ResetPrompt();
-            GeneratePromptUI();
-            inputIndex++;
+            if (currentPrompts[0] != null && CheckFinalInput())
+            {
+                StartCoroutine(PlaySuccessAnim());
+                PlayerPrefs.SetInt("CurrentScore", PlayerPrefs.GetInt("CurrentScore") + 1);
+            }
+
+            ResetVariables();
         }
+
+        timer.value -= Time.deltaTime;
     }
 
+    private IEnumerator PlaySuccessAnim()
+    {
+        idleSprite.SetActive(false);
+        successSprite.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        idleSprite.SetActive(true);
+        successSprite.SetActive(false);
+    }
+    private bool CheckFinalInput()
+    {
+        // All green, score +1;
+        foreach (GameObject go in currentPrompts)
+        {
+            if (go.GetComponent<Image>().color != Color.green) return false;
+        }
+        return true;
+    }
+    private void CheckKeyPress()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && inputs[elementIndex] == 276)
+        {
+            Debug.Log("Left Checked");
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && inputs[elementIndex] == 275)
+        {
+            Debug.Log("Right Checked");
+
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && inputs[elementIndex] == 274)
+        {
+            Debug.Log("Down Checked");
+
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && inputs[elementIndex] == 273)
+        {
+            Debug.Log("Up Checked");
+
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+        } else if (Input.anyKeyDown)
+        {
+            // Reset Color
+            foreach (GameObject go in currentPrompts)
+            {
+                go.GetComponent<Image>().color = Color.white;
+            }
+            // Reset index
+            elementIndex = 0;
+        }
+    }
+    private void ResetVariables()
+    {
+        timeToNextPrompt += promptTime;
+        ResetPrompt();
+        GeneratePrompts();
+        GeneratePromptUI();
+        inputIndex++;
+        elementIndex = 0;
+        timer.value = promptTime;
+    }
     private void GeneratePrompts()
     {
-        for (int j = 0; j < rounds; j++) {
+        for (int i = 0; i < promptLength; i++)
+        {
+            GameObject randomElement = promptElements[Random.Range(0, promptElements.Length)];
+            // Update UI prompt
+            // Update prompt array
+            switch (randomElement.tag)
             {
-                inputs[j] = new int[promptLength];
+                case "Left":
+                    inputs[i] = 276;
+                    break;
 
-                for (int i = 0; i < promptLength; i++)
-                {
-                    GameObject randomElement = promptElements[Random.Range(0, promptElements.Length)];
-                    // Update UI prompt
-                    // Update prompt array
-                    switch (randomElement.tag)
-                    {
-                        case "Left":
-                            inputs[j][i] = 276;
-                            break;
+                case "Right":
+                    inputs[i] = 275;
+                    break;
 
-                        case "Right":
-                            inputs[j][i] = 275;
-                            break;
+                case "Down":
+                    inputs[i] = 274;
+                    break;
 
-                        case "Down":
-                            inputs[j][i] = 274;
-                            break;
+                case "Up":
+                    inputs[i] = 273;
+                    break;
 
-                        case "Up":
-                            inputs[j][i] = 273;
-                            break;
-
-                        default:
-                            Debug.Log("Somehow all cases missed");
-                            break;
-                    }
-                }
+                default:
+                    Debug.Log("Somehow all cases missed");
+                    break;
             }
         }
     }
@@ -110,7 +187,7 @@ public class GymManager : MonoBehaviour
                                                           0);
 
             GameObject go;
-            switch (inputs[inputIndex][i])
+            switch (inputs[i])
             {
                 case 273:
                     go = Instantiate(promptElements[3], promptPanel.transform);
