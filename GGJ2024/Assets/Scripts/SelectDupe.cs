@@ -25,6 +25,8 @@ public class SelectDupe : MonoBehaviour
 
     private CountDown countDown;
 
+    [SerializeField] private GameObject transitionScreen;
+
     enum State
     {
         Idle,
@@ -46,6 +48,8 @@ public class SelectDupe : MonoBehaviour
 
         state = State.Idle;
         zoomTimer = 0f;
+
+        transitionScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,6 +65,8 @@ public class SelectDupe : MonoBehaviour
                     if (finished)
                     {
                         finishText.SetActive(true);
+                        GameFinsished();
+
                         return;
                     }
 
@@ -203,4 +209,10 @@ public class SelectDupe : MonoBehaviour
 
         }
     }
+
+    private void GameFinsished()
+    {
+        StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+    }
+
 }
