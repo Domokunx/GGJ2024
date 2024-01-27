@@ -14,7 +14,8 @@ public class GymManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject promptPanel;
     [SerializeField] private Slider timer;
-    [SerializeField] private GameObject transitionScreen;
+    [SerializeField] private GameObject winTransitionScreen;
+    [SerializeField] private GameObject loseTransitionScreen;
     [SerializeField] private GameObject idleSprite;
     [SerializeField] private GameObject successSprite;
 
@@ -22,6 +23,8 @@ public class GymManager : MonoBehaviour
     private int[] inputs;
     private int FIRST_ELEMENT_XPOSITION;
     private int LAST_ELEMENT_XPOSITION;
+
+    private int score;
 
     private float timeToNextPrompt;
 
@@ -39,11 +42,13 @@ public class GymManager : MonoBehaviour
         // Initialise Variables
         timer.value = timer.maxValue = promptTime;
         FIRST_ELEMENT_XPOSITION = -450;
-        LAST_ELEMENT_XPOSITION = 500;
+        LAST_ELEMENT_XPOSITION = 580;
         inputIndex = 0;
         timeToNextPrompt = 0;
         elementIndex = 0;
-        transitionScreen.SetActive(false);
+        winTransitionScreen.SetActive(false);
+        loseTransitionScreen.SetActive(false);
+        score = 0;
 
         // Initialise Array
         inputs = new int[promptLength];
@@ -63,17 +68,24 @@ public class GymManager : MonoBehaviour
         // Timer for prompt change
         if (timeToNextPrompt < Time.time) 
         {
-            if (inputIndex == rounds)
-            {
-                StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
-                timeToNextPrompt += Time.time;
-                return;
-            }
-
             if (currentPrompts[0] != null && CheckFinalInput())
             {
                 StartCoroutine(PlaySuccessAnim());
-                PlayerPrefs.SetInt("CurrentScore", PlayerPrefs.GetInt("CurrentScore") + 1);
+                score++;
+            }
+                
+            if (inputIndex == rounds)
+            {
+                if (score >= (float) rounds / 2)
+                {
+                    PlayerPrefs.SetInt("Rizz", PlayerPrefs.GetInt("Rizz") + 1);
+                    StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
+                } else { 
+                    StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
+                }
+
+                timeToNextPrompt += Time.time;
+                return;
             }
 
             ResetVariables();
@@ -97,7 +109,7 @@ public class GymManager : MonoBehaviour
         // All green, score +1;
         foreach (GameObject go in currentPrompts)
         {
-            if (go.GetComponent<Image>().color != Color.green) return false;
+            if (go.GetComponent<Image>().color != Color.white) return false;
         }
         return true;
     }
@@ -106,31 +118,31 @@ public class GymManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) && inputs[elementIndex] == 276)
         {
             Debug.Log("Left Checked");
-            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && inputs[elementIndex] == 275)
         {
             Debug.Log("Right Checked");
 
-            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && inputs[elementIndex] == 274)
         {
             Debug.Log("Down Checked");
 
-            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && inputs[elementIndex] == 273)
         {
             Debug.Log("Up Checked");
 
-            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.green;
+            currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         } else if (Input.anyKeyDown)
         {
             // Reset Color
             foreach (GameObject go in currentPrompts)
             {
-                go.GetComponent<Image>().color = Color.white;
+                go.GetComponent<Image>().color = Color.black;
             }
             // Reset index
             elementIndex = 0;
