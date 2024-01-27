@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         SpawnDupes();
-        SpawnDate();
+        SpawnChicken();
     }
 
     // Update is called once per frame
@@ -32,30 +32,36 @@ public class Spawner : MonoBehaviour
         // Spawn DupeA
         for (int i = 0; i < amountDupeA; i++)
         {
-            GameObject dupeA = Instantiate(dupeAPrefab);
-
-            Vector2 randomPositionA = new Vector2(Random.Range(-9f, 9f), Random.Range(-5f, 0f));
-
-            dupeA.transform.position = new Vector3(randomPositionA.x, randomPositionA.y, 0);
+            Spawn(dupeAPrefab);
         }
 
         // Spawn DupeB
         for (int i = 0; i < amountDupeB; i++)
         {
-            GameObject dupeB = Instantiate(dupeBPrefab);
-
-            Vector2 randomPositionB = new Vector2(Random.Range(-9f, 9f), Random.Range(-5f, 0f));
-
-            dupeB.transform.position = new Vector3(randomPositionB.x, randomPositionB.y, 0);
+            Spawn(dupeBPrefab);
         }
     }
 
-    public void SpawnDate()
+    public void SpawnChicken()
     {
-        GameObject date = Instantiate(datePrefab);
+        Spawn(datePrefab);
+    }
 
-        Vector2 randomPosition = new Vector2(Random.Range(-9f, 9f), Random.Range(-5f, 0f));
+    public void Spawn(GameObject prefab) 
+    {
+        GameObject gameObject = Instantiate(prefab);
 
-        date.transform.position = new Vector3(randomPosition.x, randomPosition.y, 0);
+        // spawn random position
+        Vector2 randomPosition = new Vector2(Random.Range(-9f, 9f), Random.Range(-5f, 1f));
+        gameObject.transform.position = new Vector3(randomPosition.x, randomPosition.y, 0);
+
+        // flip
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        int flip = Random.Range(0, 2);
+
+        Debug.Log(flip);
+
+        if (flip == 0) spriteRenderer.flipX = false;
+        else spriteRenderer.flipX = true;
     }
 }
