@@ -110,7 +110,7 @@ public class BrainGame : MonoBehaviour
     }
     void Update()
     {
-        if (timeToNextSolve < Time.time)
+        if (timeToNextSolve < Time.timeSinceLevelLoad)
         {
             EnemySolve();
         }
@@ -144,7 +144,7 @@ public class BrainGame : MonoBehaviour
             {
                 GameManager.rizzed[3] = true;
                 StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
-                timeToNextSolve = 999999f;
+                timeToNextSolve += 999999f;
                 return;
             }
 

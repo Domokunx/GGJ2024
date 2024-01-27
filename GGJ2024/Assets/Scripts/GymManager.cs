@@ -64,7 +64,7 @@ public class GymManager : MonoBehaviour
         CheckKeyPress();
 
         // Timer for prompt change
-        if (timeToNextPrompt < Time.time) 
+        if (timeToNextPrompt < Time.timeSinceLevelLoad) 
         {
             if (currentPrompts[0] != null && CheckFinalInput())
             {
@@ -82,7 +82,7 @@ public class GymManager : MonoBehaviour
                     StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
                 }
 
-                timeToNextPrompt += Time.time;
+                timeToNextPrompt -= Time.time;
                 return;
             }
 

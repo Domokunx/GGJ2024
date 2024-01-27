@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
 
         // Load next date
         SceneManager.LoadScene(nextDate++);
-        StopAllCoroutines();
     }
     public static IEnumerator BackToOutfitSelector(GameObject transition)
     {
