@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/OutfitSelector.unity
     guid: e780c3a3168282047b675ee69198e4a2
   - enabled: 1
-    path: Assets/Scenes/AuditionGame.unity
+    path: Assets/Scenes/GymGame.unity
     guid: 7b03c326cff3b3c4ea29601b305bd5bd
   - enabled: 1
     path: Assets/Scenes/BrainGame.unity
