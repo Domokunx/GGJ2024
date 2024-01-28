@@ -9,6 +9,8 @@ public class CountDown : MonoBehaviour
     [SerializeField] TextMeshProUGUI countDownText;
     [SerializeField] private int count = 3;
 
+    [SerializeField] private string whatToDo = "Go!";
+
     private bool countFinished;
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,7 @@ public class CountDown : MonoBehaviour
             count--;
             if (count == 0)
             {
-                countDownText.text = "GO";
+                countDownText.text = whatToDo;
                 countFinished = true;
             }
             else if (count == -1)
