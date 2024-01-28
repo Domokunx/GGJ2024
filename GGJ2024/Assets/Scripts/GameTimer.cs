@@ -10,24 +10,52 @@ public class GameTimer : MonoBehaviour
 
     private Image timerImage;
     public float spendingTime = 0f;
-    // Start is called before the first frame update
+    private bool isPaused = false;
+
+    /*
+    public static class CoroutineUtil
+    {
+        public static IEnumerator WaitForRealSeconds(float time)
+        {
+            float start = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup < start + time)
+            {
+                yield return null;
+            }
+        }
+    }
+    */
+
     void Start()
     {
         timerImage = GetComponent<Image>();
         transitionScreen.SetActive(false);
+        //StartCoroutine(PauseForSeconds());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        spendingTime += Time.deltaTime;
-        float timer = spendingTime / timeLimit;
-
-        timerImage.fillAmount = timer;
-
-        if (spendingTime > timeLimit)
+        if (!isPaused)
         {
-            StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+            spendingTime += Time.deltaTime;
+            float timer = spendingTime / timeLimit;
+
+            timerImage.fillAmount = timer;
+
+            if (spendingTime > timeLimit)
+            {
+                StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+            }
         }
     }
+
+    /*
+    IEnumerator PauseForSeconds()
+    {
+        Time.timeScale = 0;
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(4f));
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+    */
 }
