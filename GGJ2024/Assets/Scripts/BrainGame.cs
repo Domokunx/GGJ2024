@@ -23,6 +23,9 @@ public class BrainGame : MonoBehaviour
     [SerializeField] private GameObject winTransitionScreen;
     [SerializeField] private GameObject loseTransitionScreen;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip correct, wrong;
+
     #region Private Var
     private int playerIndex = 0;
     private int enemyIndex = 0;
@@ -160,17 +163,24 @@ public class BrainGame : MonoBehaviour
         {
             if (playerIndex + 1 == questionCount) 
             {
+
                 GameManager.rizzed[3] = true;
                 StartCoroutine(ToSelectDateScene(winTransitionScreen));
                 timeToNextSolve += 999999f;
                 return;
             }
 
+            audioSource.clip = correct;
+            audioSource.Play();
+
             playerQuestion.text = questions[questionIndices[++playerIndex]];
             playerQuestionCounter.text = "Questions Left: " + (questionCount - playerIndex).ToString();
         }
         else
-        {
+        {   
+            Debug.Log("wrong answer");
+            audioSource.clip = wrong;
+            audioSource.Play();
             // Play wrong answer audio or something
             // Show cross
             // Cannot interact for about 0.5s
