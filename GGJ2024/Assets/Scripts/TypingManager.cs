@@ -49,11 +49,6 @@ public class TypingManager : MonoBehaviour
 
         transitionScreen.SetActive(false);
 
-        //isMistake = new bool[question.Length];
-        //for(int i = 0; i < question.Length; i++)
-        //{
-        //    isMistake[i] = false;
-        //}
         isMistake = false;
 
         birdSR = bird.GetComponent<SpriteRenderer>();
@@ -61,8 +56,10 @@ public class TypingManager : MonoBehaviour
 
         finished = false;
 
+        SetDifficulty();
 
         Output();
+
     }
 
     // Update is called once per frame
