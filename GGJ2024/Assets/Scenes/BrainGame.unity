@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 1024292877}
   count: 3
+  whatToDo: solve the maths!
 --- !u!1001 &1024292875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 1757.925
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1233,11 +1234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 13.64
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -141
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
