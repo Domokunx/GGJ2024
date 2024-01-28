@@ -17,7 +17,7 @@ public class OutfitSelectorManager : MonoBehaviour
     private void Awake()
     {
         info = Instantiate(infoCards[GameManager.nextDate - 3], infoCardLocation);
-        HideInfo();
+        ShowInfo();
     }
     public void ShowInfo()
     {
