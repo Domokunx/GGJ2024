@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class OutfitScoreManager : MonoBehaviour
 {
