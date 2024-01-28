@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 1613.95
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -7.77
       objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 759289741}
   count: 3
-  whatToDo: Go!
+  whatToDo: complete the arrow keys!
 --- !u!114 &1596054377
 MonoBehaviour:
   m_ObjectHideFlags: 0
