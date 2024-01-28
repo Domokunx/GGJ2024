@@ -6,6 +6,8 @@ public class DifficultySettings : MonoBehaviour
 {
     public static DifficultySettings instance;
 
+    public int totalScore = 0;
+
     private OutfitScoreManager scoreManager;
 
     // index 0 = easy, 1 = medium, 2 = hard
@@ -43,16 +45,18 @@ public class DifficultySettings : MonoBehaviour
     public void SetDifficulty()
     {
         scoreManager = FindAnyObjectByType<OutfitScoreManager>();
-        if (scoreManager.GetScore() >= 7)
+        int score = scoreManager.GetScore();
+        totalScore += score;
+        if (score >= 7)
         {
             difficulty = 0;
         }
-        else if (scoreManager.GetScore() >= 4)
+        else if (score >= 4)
         {
             difficulty = 1;
         }
         else difficulty = 2;
         Debug.Log(difficulty);
-        Debug.Log(scoreManager.GetScore());
+        Debug.Log(score);
     }
 }
