@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionScreen: {fileID: 1624659257}
+  gameTimer: {fileID: 611613398}
   questionText: {fileID: 730385078}
   question:
   - are you a flamingo
@@ -310,6 +311,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887798405377556018, guid: 0f822945575344847a2627987457a943, type: 3}
   m_PrefabInstance: {fileID: 611613396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &611613398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
+  m_PrefabInstance: {fileID: 611613396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0cfe0402efbac438b56887cb37711f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &652115409
 PrefabInstance:
   m_ObjectHideFlags: 0
