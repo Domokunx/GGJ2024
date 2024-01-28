@@ -6,14 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class BrainGame : MonoBehaviour
 {
-    [Header("Difficulty Settings")]
-    [SerializeField] private int questionCount;
-
-    [Header("Enemy Settings")]
-    [SerializeField] private float solvingInterval = 2f;
-
-    [Space]
-
     [Header("Object refs")]
     [SerializeField] private TextMeshProUGUI playerQuestion;
     [SerializeField] private TextMeshProUGUI enemyQuestion;
@@ -24,6 +16,9 @@ public class BrainGame : MonoBehaviour
     [SerializeField] private GameObject loseTransitionScreen;
 
     #region Private Var
+    private int questionCount;
+    private float solvingInterval = 2f;
+
     private int playerIndex = 0;
     private int enemyIndex = 0;
 
@@ -92,6 +87,7 @@ public class BrainGame : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(EnableTyping());
+        SetDifficultySettings();
 
         questionIndices = new int[questionCount];
         for (int i = 0; i < questionCount; i++)
@@ -182,5 +178,11 @@ public class BrainGame : MonoBehaviour
     private bool CheckAnswer(int questionIndex, int answer)
     {
         return int.Parse(answers[questionIndices[questionIndex]]) == answer;
+    }
+    private void SetDifficultySettings()
+    {
+        int diff = DifficultySettings.instance.difficulty;
+        questionCount = DifficultySettings.instance.questionCount[diff];
+        solvingInterval = DifficultySettings.instance.solveTimeInterval[diff];
     }
 }
