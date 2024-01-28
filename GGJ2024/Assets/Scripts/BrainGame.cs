@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BrainGame : MonoBehaviour
 {
@@ -25,8 +26,6 @@ public class BrainGame : MonoBehaviour
     #region Private Var
     private int playerIndex = 0;
     private int enemyIndex = 0;
-
-    private CountDown cd;
 
     private float timeToNextSolve;
 
@@ -92,7 +91,6 @@ public class BrainGame : MonoBehaviour
 
     private void Awake()
     {
-        cd = FindAnyObjectByType<CountDown>();
         StartCoroutine(EnableTyping());
 
         questionIndices = new int[questionCount];
@@ -122,6 +120,14 @@ public class BrainGame : MonoBehaviour
             EnemySolve();
         }
     }
+
+    private IEnumerator ToSelectDateScene(GameObject transitionScene)
+    {
+        transitionScene.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("PickYourDateScene");
+    }
     private IEnumerator EnableTyping()
     {
         yield return new WaitForSeconds(4);
@@ -134,7 +140,7 @@ public class BrainGame : MonoBehaviour
 
         if (enemyIndex + 1  ==  questionCount)
         {
-            StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
+            StartCoroutine(ToSelectDateScene(loseTransitionScreen));
             return;
         }
 
@@ -155,7 +161,7 @@ public class BrainGame : MonoBehaviour
             if (playerIndex + 1 == questionCount) 
             {
                 GameManager.rizzed[3] = true;
-                StartCoroutine(GameManager.BackToOutfitSelector(winTransitionScreen));
+                StartCoroutine(ToSelectDateScene(winTransitionScreen));
                 timeToNextSolve += 999999f;
                 return;
             }
