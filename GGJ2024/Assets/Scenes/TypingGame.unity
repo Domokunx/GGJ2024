@@ -155,19 +155,24 @@ MonoBehaviour:
   transitionScreen: {fileID: 1624659257}
   questionText: {fileID: 730385078}
   question:
-  - Good morning guys
-  - the typing system work
-  - good!
+  - are you a flamingo
+  - whenever you are around, i find it hard to stand on both feet
+  - do you have a map
+  - i just got lost in your beautiful feathers
+  - do you have a nest
+  - i would love to cozy up with you
   answer:
-  - good morning guys
-  - the typing system work
-  - good1
+  - are you a flamingo
+  - whenever you are around, i find it hard to stand on both feet
+  - do you have a map
+  - i just got lost in your beautiful feathers
+  - do you have a nest
+  - i would love to cozy up with you
   bird: {fileID: 1287934942}
   correctSprite:
   - {fileID: 21300000, guid: 3383d5436a69ab74b811c31e9fc490bd, type: 3}
   - {fileID: 21300000, guid: f29f103f77595734fa171cbc0345ec23, type: 3}
   - {fileID: 21300000, guid: 873e7de8ff726f74a99da7e182e5d077, type: 3}
-  - {fileID: 21300000, guid: dd49a074bfe041d4b95dafb57b30cd74, type: 3}
   mistakeSprite:
   - {fileID: 21300000, guid: 96bd1fe36e449d043bcfad8000b8d226, type: 3}
   - {fileID: 21300000, guid: a5353e731ae3d7345a91b45919cdd777, type: 3}
@@ -195,6 +200,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1277265163}
     m_Modifications:
+    - target: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
+      propertyPath: timeLimit
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
       propertyPath: transitionScreen
       value: 
@@ -574,7 +583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.15, y: -748.57}
+  m_AnchoredPosition: {x: 276.15002, y: -748.57}
   m_SizeDelta: {x: 237.44, y: 39.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &943610455
@@ -847,10 +856,10 @@ RectTransform:
   m_Children:
   - {fileID: 1507116978}
   - {fileID: 1286337985}
-  - {fileID: 1624659258}
-  - {fileID: 1219609917}
   - {fileID: 652115410}
   - {fileID: 611613397}
+  - {fileID: 1624659258}
+  - {fileID: 1219609917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1388,7 +1397,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624659257}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1407,7 +1416,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624659257}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1470,6 +1479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 652115411}
   count: 3
+  whatToDo: Go!
 --- !u!4 &1696162165
 Transform:
   m_ObjectHideFlags: 0
