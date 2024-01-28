@@ -108,6 +108,9 @@ public class GymManager : MonoBehaviour
     }
     private IEnumerator PlaySuccessAnim()
     {
+        Debug.Log("correct");
+        audioSource.clip = correct;
+        audioSource.Play();
         idleSprite.SetActive(false);
         successSprite.SetActive(true);
 
@@ -130,9 +133,6 @@ public class GymManager : MonoBehaviour
             } 
 
         }
-        Debug.Log("correct");
-        audioSource.clip = correct;
-        audioSource.Play();
         return true;
     }
     private void CheckKeyPress()
