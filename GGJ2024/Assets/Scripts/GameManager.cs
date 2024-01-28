@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static bool[] rizzed = new bool[4];
-    public static int nextDate = 2;
+    public static int nextDate = 3;
 
     // Start is called before the first frame update
     void Start()
