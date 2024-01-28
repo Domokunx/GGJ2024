@@ -1416,9 +1416,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dupeAPrefab: {fileID: 5444722568212604957, guid: 6aa03fbb273747a4caa333b3bfb2cf9f, type: 3}
-  amountDupeA: 4
+  amountDupeA: 8
   dupeBPrefab: {fileID: 2054747526158447683, guid: 452fd1a685a6f304eaf8e0bf12b032e1, type: 3}
-  amountDupeB: 4
+  amountDupeB: 8
   datePrefab: {fileID: 2054747526158447683, guid: 997a965a10931b9459969c7894240806, type: 3}
 --- !u!4 &1952233049
 Transform:
