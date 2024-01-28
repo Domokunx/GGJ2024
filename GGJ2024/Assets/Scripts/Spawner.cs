@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour
         GameObject gameObject = Instantiate(prefab);
 
         // spawn random position
-        Vector2 randomPosition = new Vector2(Random.Range(-9f, 9f), Random.Range(-5f, 1f));
+        Vector2 randomPosition = new Vector2(Random.Range(-8f, 8f), Random.Range(-4.5f, 1f));
         gameObject.transform.position = new Vector3(randomPosition.x, randomPosition.y, 0);
 
         // flip

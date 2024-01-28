@@ -157,13 +157,13 @@ MonoBehaviour:
   transitionScreen: {fileID: 307829600}
   finishText: {fileID: 613540637}
   correctNum: 3
+  gameTimer: {fileID: 583333812}
   zoomInSize: 2
   zoomOutSize: 5
   zoomTime: 0.05
   audioSource: {fileID: 640412937}
   correct: {fileID: 8300000, guid: 60a02d43a756747f2a7cf810cac35c02, type: 3}
   wrong: {fileID: 8300000, guid: 78c2ed5061d604738bab476a09f7c3bb, type: 3}
-  gameTimer: {fileID: 583333812}
 --- !u!4 &43403147
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,9 +1339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dupeAPrefab: {fileID: 5444722568212604957, guid: 6aa03fbb273747a4caa333b3bfb2cf9f, type: 3}
-  amountDupeA: 3
+  amountDupeA: 4
   dupeBPrefab: {fileID: 2054747526158447683, guid: 452fd1a685a6f304eaf8e0bf12b032e1, type: 3}
-  amountDupeB: 3
+  amountDupeB: 4
   datePrefab: {fileID: 2054747526158447683, guid: 997a965a10931b9459969c7894240806, type: 3}
 --- !u!4 &1952233049
 Transform:
