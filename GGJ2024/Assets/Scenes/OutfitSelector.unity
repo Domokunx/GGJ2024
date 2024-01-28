@@ -4173,9 +4173,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000352020}
+      - m_Target: {fileID: 2000352021}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: MoveToNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
