@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SelectDupe : MonoBehaviour
 {
+    [SerializeField] private GameObject transitionScreen;
     [SerializeField] private GameObject finishText;
     [SerializeField] private int correctNum = 3;
 
@@ -13,9 +14,12 @@ public class SelectDupe : MonoBehaviour
     [SerializeField] private float zoomOutSize = 5f;
     [SerializeField] private float zoomTime = 0.1f;
 
+
+    [Header("SFX")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip correct, wrong;
 
+    [SerializeField] private GameTimer gameTimer;
 
     private GameObject hitObject;
     private Spawner spawner;
@@ -29,7 +33,6 @@ public class SelectDupe : MonoBehaviour
 
     private CountDown countDown;
 
-    [SerializeField] private GameObject transitionScreen;
 
     enum State
     {
@@ -117,6 +120,10 @@ public class SelectDupe : MonoBehaviour
             else
             {
                 correctCount++;
+                if (correctCount == correctNum)
+                {
+                    gameTimer.SetPaused(true);
+                }
 
                 audioSource.clip = correct;
                 audioSource.Play();
