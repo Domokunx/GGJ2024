@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Achievements : MonoBehaviour
 {
@@ -28,5 +29,12 @@ public class Achievements : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void Restart()
+    {
+        GameManager.nextDate = 3;
+        GameManager.rizzed = new bool[4];
+        SceneManager.LoadScene(2);
     }
 }
