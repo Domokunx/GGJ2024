@@ -90,7 +90,7 @@ public class GymManager : MonoBehaviour
                     StartCoroutine(GameManager.BackToOutfitSelector(loseTransitionScreen));
                 }
 
-                timeToNextPrompt -= Time.time;
+                timeToNextPrompt += 999999f;
                 return;
             }
 
