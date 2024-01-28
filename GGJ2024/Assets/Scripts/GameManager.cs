@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static bool[] rizzed = new bool[4];
     public static int nextDate = 2;
+    [SerializeField] private GameObject transitionScreen;
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        transitionScreen.SetActive(false);
     }
 
     public void MoveToNext()
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator MoveToNextDate()
     {
         // Play transition for 5s
+        transitionScreen.SetActive(true);
         yield return new WaitForSeconds(4f);
 
         // Load next date
