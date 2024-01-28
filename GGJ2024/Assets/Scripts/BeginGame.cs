@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class BeginGame : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip click;
+
     void Start()
     {
         
@@ -19,6 +22,8 @@ public class BeginGame : MonoBehaviour
 
     public void BeginToGame()
     {
+        audioSource.clip = click;
+        audioSource.Play();
         StartCoroutine(ChangeScene());
     }
 }

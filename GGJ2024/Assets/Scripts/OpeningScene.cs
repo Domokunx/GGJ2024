@@ -19,20 +19,13 @@ public class OpeningScene : MonoBehaviour
 
     public float typingSpeed = 0.05f;
 
-    //public AudioSource typingSource;
-
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip typing;
     void Start()
     {
         NextSet();
         continueButton.gameObject.SetActive(false);
 
-
-        /*
-        if (typingSource == null)
-        {
-            typingSource = GetComponent<AudioSource>();
-        }
-        */
     }
 
     void Update()
@@ -46,16 +39,16 @@ public class OpeningScene : MonoBehaviour
             }
         }
 
-        /*
-        if (isTyping && !typingSource.isPlaying)
+        if (isTyping && !audioSource.isPlaying)
         {
-            typingSource.Play();
+            audioSource.clip = typing;
+            audioSource.Play();
         }
-        else if (!isTyping && typingSource.isPlaying)
+        else if (!isTyping && audioSource.isPlaying)
         {
-            typingSource.Stop();
+            audioSource.Stop();
         }
-        */
+
     }
 
     void NextSet()
