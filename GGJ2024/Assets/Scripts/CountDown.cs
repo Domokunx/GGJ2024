@@ -9,6 +9,8 @@ public class CountDown : MonoBehaviour
     [SerializeField] TextMeshProUGUI countDownText;
     [SerializeField] private int count = 3;
 
+    [SerializeField] private GameObject countdownBG;
+
     [SerializeField] private string whatToDo = "Go!";
 
     [SerializeField] private AudioSource audioSource;
@@ -64,6 +66,7 @@ public class CountDown : MonoBehaviour
             else if (count == -1)
             {
                 countDownText.text = "";
+                countdownBG.SetActive(false);
             }
             else countDownText.text = count.ToString("0");
 
