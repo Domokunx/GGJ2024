@@ -38,9 +38,7 @@ public class PickYourDateManager : MonoBehaviour
         {
             if (toggles[i].isOn)
             {
-                audioSource.clip = correct;
-                audioSource.Play();
-                selected[i] = true;
+                selected[i] = true; 
             }
         }
         
