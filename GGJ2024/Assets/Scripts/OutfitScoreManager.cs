@@ -13,6 +13,9 @@ public class OutfitScoreManager : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI scoreText;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dressupClothes;
+
     public struct Outfit
     {
         public string name;
@@ -121,6 +124,9 @@ public class OutfitScoreManager : MonoBehaviour
     void CalculateScore()
     {
         if (!partChanged) return;
+
+        audioSource.clip = dressupClothes;
+        audioSource.Play();
         
         int[] outfitsIndex = new int[3]; 
         for (int i = 0; i < PART_NUM; i++)

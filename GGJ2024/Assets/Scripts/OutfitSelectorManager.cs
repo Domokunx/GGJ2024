@@ -21,12 +21,16 @@ public class OutfitSelectorManager : MonoBehaviour
     }
     public void ShowInfo()
     {
+        audioSource.clip = click;
+        audioSource.Play();
         info.SetActive(true);
         closeBtn.gameObject.SetActive(true);
     }
 
     public void HideInfo()
     {
+        audioSource.clip = click;
+        audioSource.Play();
         info.SetActive(false);
         closeBtn.gameObject.SetActive(false);
 

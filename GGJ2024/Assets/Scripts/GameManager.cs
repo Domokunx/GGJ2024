@@ -25,9 +25,6 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator MoveToNextDate()
     {
-        audioSource.clip = dressupDone;
-        audioSource.Play();
-        yield return new WaitForSeconds(3f);
         // Play transition for 5s
         transitionScreen.SetActive(true);
         yield return new WaitForSeconds(4f);

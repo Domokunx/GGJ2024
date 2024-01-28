@@ -1063,11 +1063,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573567093}
   m_CullTransparentMesh: 1
---- !u!1 &584312922 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4268674655908045224, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+--- !u!114 &584312923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
   m_PrefabInstance: {fileID: 1541197731}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7709100c556e3004bada626786b71ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &593346299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1530,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733832754}
   m_CullTransparentMesh: 1
+--- !u!1 &773753873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773753874}
+  - component: {fileID: 773753875}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &773753874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773753873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -466.61987, y: 391.77026, z: 6297.347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &773753875
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773753873}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &786064672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2708,8 @@ MonoBehaviour:
   cloth: {fileID: 398358770}
   shoe: {fileID: 1642264475}
   scoreText: {fileID: 573567095}
+  audioSource: {fileID: 773753875}
+  dressupClothes: {fileID: 8300000, guid: 750fe1efe6cf6414393f92c25d0aa8d4, type: 3}
 --- !u!4 &1456538628
 Transform:
   m_ObjectHideFlags: 0
@@ -3538,8 +3674,8 @@ MonoBehaviour:
   - {fileID: 20586063622982416, guid: 83efd5c06246d724787405eef1743ca1, type: 3}
   - {fileID: 20586063622982416, guid: 09d3bdd2fa109ba4484d1b832490464e, type: 3}
   infoCardLocation: {fileID: 1437114472}
-  audioSource: {fileID: 1605900336}
-  click: {fileID: 0}
+  audioSource: {fileID: 773753875}
+  click: {fileID: 8300000, guid: 3643abd734fd34f0fa84ec84541d9ba4, type: 3}
 --- !u!4 &1681343653
 Transform:
   m_ObjectHideFlags: 0
@@ -3937,8 +4073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionScreen: {fileID: 1080407948}
-  audioSource: {fileID: 0}
-  dressupDone: {fileID: 0}
+  audioSource: {fileID: 773753875}
+  dressupDone: {fileID: 8300000, guid: 2615cd74055144a73a7d9b82e0f43c13, type: 3}
 --- !u!4 &2000352022
 Transform:
   m_ObjectHideFlags: 0
@@ -4037,9 +4173,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2000352021}
+      - m_Target: {fileID: 2000352020}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: MoveToNext
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4061,13 +4197,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584312922}
-        m_TargetAssemblyTypeName: OutfitSelectorManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 584312923}
+        m_TargetAssemblyTypeName: DifficultySettings, Assembly-CSharp
+        m_MethodName: SetDifficulty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4164,3 +4300,4 @@ SceneRoots:
   - {fileID: 1456538628}
   - {fileID: 1605900337}
   - {fileID: 1541197731}
+  - {fileID: 773753874}
