@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PickYourDateManager : MonoBehaviour
 {
     [SerializeField] private Toggle[] toggles;
+    [HideInInspector] public static bool[] selected;
 
-    private bool[] selected;
     // Start is called before the first frame update
     void Start()
     {
+        selected = new bool[toggles.Length];
+
         foreach (Toggle btn in toggles)
         {
             btn.interactable = false;
@@ -25,5 +29,16 @@ public class PickYourDateManager : MonoBehaviour
         }
     }
 
-
+    public void FinaliseDecision()
+    {
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            if (toggles[i].isOn)
+            {
+                selected[i] = true;
+            }
+        }
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
