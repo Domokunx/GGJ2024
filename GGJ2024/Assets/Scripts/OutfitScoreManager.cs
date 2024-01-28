@@ -49,8 +49,6 @@ public class OutfitScoreManager : MonoBehaviour
         SetPartName(shoe,2);
 
         CalculateScore();
-
-        scoreText.text = "Score: " + totalScore.ToString();
     }
 
     private void ReadData()
@@ -126,6 +124,11 @@ public class OutfitScoreManager : MonoBehaviour
         int clothScore = outfitsData[outfitsIndex[1]].scoreMini[currentDateNum - 1];
         int shoesScore = outfitsData[outfitsIndex[2]].scoreMini[currentDateNum - 1];
 
-        totalScore = hatScore + clothScore + shoesScore; 
+        totalScore = hatScore + clothScore + shoesScore;
+
+        scoreText.text = "Score: " + totalScore.ToString();
+
+
+        partChanged = false;
     }
 }
