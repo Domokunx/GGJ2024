@@ -4,14 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GymManager : MonoBehaviour
-{
-    [Header("Difficulty Settings")]
-    [SerializeField] private int promptLength;
-    [SerializeField] private int rounds;
-    [SerializeField] private float promptTime; // Most likely to be const but Just in Case
+{ 
     [SerializeField] private GameObject[] promptElements;
-
-    [Space]
     [SerializeField] private GameObject promptPanel;
     [SerializeField] private Slider timer;
     [SerializeField] private GameObject winTransitionScreen;
@@ -23,6 +17,10 @@ public class GymManager : MonoBehaviour
     public AudioClip leftKey, rightKey, upKey, downKey;
 
     #region Private Variables
+    private int promptLength;
+    private int rounds;
+    private float promptTime; // Most likely to be const but Just in Case
+    
     private int[] inputs;
     private int FIRST_ELEMENT_XPOSITION;
     private int LAST_ELEMENT_XPOSITION;
@@ -45,6 +43,7 @@ public class GymManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDifficultySettings();
         // Initialise Variables
         timer.value = timer.maxValue = promptTime;
         FIRST_ELEMENT_XPOSITION = -450;
@@ -100,7 +99,13 @@ public class GymManager : MonoBehaviour
 
         timer.value -= Time.deltaTime;
     }
-
+    private void SetDifficultySettings()
+    {
+        int difficulty = DifficultySettings.instance.difficulty;
+        promptLength = DifficultySettings.instance.promptLength[difficulty];
+        rounds = DifficultySettings.instance.rounds[difficulty];
+        promptTime = DifficultySettings.instance.promptTimer[difficulty];
+    }
     private IEnumerator PlaySuccessAnim()
     {
         idleSprite.SetActive(false);

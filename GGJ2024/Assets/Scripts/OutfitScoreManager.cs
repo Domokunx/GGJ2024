@@ -171,4 +171,9 @@ public class OutfitScoreManager : MonoBehaviour
 
         partChanged = false;
     }
+
+    public int GetScore()
+    {
+        return totalScore;
+    }
 }
