@@ -26,6 +26,8 @@ public class BrainGame : MonoBehaviour
     private int playerIndex = 0;
     private int enemyIndex = 0;
 
+    private CountDown cd;
+
     private float timeToNextSolve;
 
     private readonly string[] questions = new string[]
@@ -90,7 +92,8 @@ public class BrainGame : MonoBehaviour
 
     private void Awake()
     {
-        inputField.Select();
+        cd = FindAnyObjectByType<CountDown>();
+        StartCoroutine(EnableTyping());
 
         questionIndices = new int[questionCount];
         for (int i = 0; i < questionCount; i++)
@@ -104,9 +107,11 @@ public class BrainGame : MonoBehaviour
         playerQuestion.text = questions[questionIndices[0]];
         enemyQuestion.text = questions[questionIndices[0]];
 
-        timeToNextSolve = solvingInterval;
+        timeToNextSolve = solvingInterval + 4;
 
         winTransitionScreen.SetActive(false);
+
+
     }
     void Update()
     {
@@ -116,6 +121,11 @@ public class BrainGame : MonoBehaviour
         {
             EnemySolve();
         }
+    }
+    private IEnumerator EnableTyping()
+    {
+        yield return new WaitForSeconds(4);
+        inputField.Select();
     }
 
     private void EnemySolve()
