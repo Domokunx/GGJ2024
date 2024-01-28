@@ -8,6 +8,7 @@ public class SelectDupe : MonoBehaviour
     [SerializeField] private GameObject transitionScreen;
     [SerializeField] private GameObject finishText;
     [SerializeField] private int correctNum = 3;
+    [SerializeField] private GameTimer gameTimer;
 
     [Header("Zoom Setting")]
     [SerializeField] private float zoomInSize = 3f;
@@ -19,7 +20,6 @@ public class SelectDupe : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip correct, wrong;
 
-    [SerializeField] private GameTimer gameTimer;
 
     private GameObject hitObject;
     private Spawner spawner;

@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 public class TypingManager : MonoBehaviour
 {
     [SerializeField] private GameObject transitionScreen;
+    [SerializeField] private GameTimer gameTimer;
 
     [Header("Question Setting")]
     [SerializeField] private TextMeshProUGUI questionText;
@@ -165,6 +166,8 @@ public class TypingManager : MonoBehaviour
 
     private void FinishGame()
     {
+        gameTimer.SetPaused(true);
+
         GameManager.rizzed[0] = true;
         StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
     }
