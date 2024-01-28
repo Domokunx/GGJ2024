@@ -1063,6 +1063,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573567093}
   m_CullTransparentMesh: 1
+--- !u!1 &584312922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4268674655908045224, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+  m_PrefabInstance: {fileID: 1541197731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &593346299
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,6 +3538,8 @@ MonoBehaviour:
   - {fileID: 20586063622982416, guid: 83efd5c06246d724787405eef1743ca1, type: 3}
   - {fileID: 20586063622982416, guid: 09d3bdd2fa109ba4484d1b832490464e, type: 3}
   infoCardLocation: {fileID: 1437114472}
+  audioSource: {fileID: 1605900336}
+  click: {fileID: 0}
 --- !u!4 &1681343653
 Transform:
   m_ObjectHideFlags: 0
@@ -3930,6 +3937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionScreen: {fileID: 1080407948}
+  audioSource: {fileID: 0}
+  dressupDone: {fileID: 0}
 --- !u!4 &2000352022
 Transform:
   m_ObjectHideFlags: 0
@@ -4047,6 +4056,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 584312922}
+        m_TargetAssemblyTypeName: OutfitSelectorManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

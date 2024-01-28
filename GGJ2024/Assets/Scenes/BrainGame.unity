@@ -1325,6 +1325,9 @@ MonoBehaviour:
   countDownText: {fileID: 1024292877}
   count: 3
   whatToDo: solve the maths!
+  audioSource: {fileID: 318295200}
+  timer: {fileID: 8300000, guid: c30e491cc28e34c48aee16986485f6c8, type: 3}
+  gameStart: {fileID: 8300000, guid: 31a91823c835f49ba81f192f91fb6c91, type: 3}
 --- !u!1001 &1024292875
 PrefabInstance:
   m_ObjectHideFlags: 0

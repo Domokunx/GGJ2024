@@ -194,6 +194,9 @@ MonoBehaviour:
   countDownText: {fileID: 1752992711}
   count: 3
   whatToDo: Find your date!
+  audioSource: {fileID: 640412937}
+  timer: {fileID: 8300000, guid: c30e491cc28e34c48aee16986485f6c8, type: 3}
+  gameStart: {fileID: 8300000, guid: 31a91823c835f49ba81f192f91fb6c91, type: 3}
 --- !u!114 &43403149
 MonoBehaviour:
   m_ObjectHideFlags: 0

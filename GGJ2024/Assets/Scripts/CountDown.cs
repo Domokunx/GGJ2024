@@ -11,6 +11,10 @@ public class CountDown : MonoBehaviour
 
     [SerializeField] private string whatToDo = "Go!";
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip timer, gameStart;
+
+
     private bool countFinished;
     // Start is called before the first frame update
     void Start()
@@ -44,10 +48,16 @@ public class CountDown : MonoBehaviour
     {
         while (count >= 0)
         {
+            audioSource.clip = timer;
+            audioSource.Play();
+
             yield return new WaitForSeconds(1f);
             count--;
             if (count == 0)
             {
+                audioSource.clip = gameStart;
+                audioSource.Play();
+
                 countDownText.text = whatToDo;
                 countFinished = true;
             }
