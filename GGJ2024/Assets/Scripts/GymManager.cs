@@ -26,6 +26,9 @@ public class GymManager : MonoBehaviour
 
     private int score;
 
+    private bool levelStart = false;
+    private float countdown = 4f;
+
     private float timeToNextPrompt;
 
     private int inputIndex;
@@ -44,7 +47,7 @@ public class GymManager : MonoBehaviour
         FIRST_ELEMENT_XPOSITION = -450;
         LAST_ELEMENT_XPOSITION = 580;
         inputIndex = 0;
-        timeToNextPrompt = 0;
+        timeToNextPrompt = countdown;
         elementIndex = 0;
         winTransitionScreen.SetActive(false);
         loseTransitionScreen.SetActive(false);
@@ -55,13 +58,15 @@ public class GymManager : MonoBehaviour
         currentPrompts = new GameObject[promptLength];
 
         // Generate Inputs
-        GeneratePrompts();        
+        GeneratePrompts();
+
+        StartCoroutine(StartLevel(countdown));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!MiniGameManager.miniGameStarted) return;
+        if (!levelStart) return;
         CheckKeyPress();
 
         // Timer for prompt change
@@ -156,6 +161,11 @@ public class GymManager : MonoBehaviour
             // Reset index
             elementIndex = 0;
         }
+    }
+    private IEnumerator StartLevel(float countdown)
+    {
+        yield return new WaitForSeconds(countdown);
+        levelStart = true;
     }
     private void ResetVariables()
     {
