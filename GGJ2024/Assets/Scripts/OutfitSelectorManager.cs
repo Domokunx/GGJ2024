@@ -8,6 +8,7 @@ public class OutfitSelectorManager : MonoBehaviour
     [SerializeField] private Button infoBtn;
     [SerializeField] private Button closeBtn;
     [SerializeField] private GameObject infoImg;
+    [SerializeField] private Button nextBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +24,10 @@ public class OutfitSelectorManager : MonoBehaviour
     public void HideInfo()
     {
         infoImg.SetActive(false);
+    }
+
+    public void DisableSpam()
+    {
+        nextBtn.interactable = false;
     }
 }

@@ -60,7 +60,8 @@ public class GymManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        if (!MiniGameManager.miniGameStarted) return;
         CheckKeyPress();
 
         // Timer for prompt change
