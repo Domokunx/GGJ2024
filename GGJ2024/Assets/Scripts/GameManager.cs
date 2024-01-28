@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static int nextDate = 3;
     [SerializeField] private GameObject transitionScreen;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dressupDone;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,9 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator MoveToNextDate()
     {
+        audioSource.clip = dressupDone;
+        audioSource.Play();
+        yield return new WaitForSeconds(3f);
         // Play transition for 5s
         transitionScreen.SetActive(true);
         yield return new WaitForSeconds(4f);

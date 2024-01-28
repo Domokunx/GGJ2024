@@ -10,6 +10,8 @@ public class OutfitSelectorManager : MonoBehaviour
     [SerializeField] private Button nextBtn;
     [SerializeField] private GameObject[] infoCards;
     [SerializeField] private Transform infoCardLocation;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip click;
 
     private GameObject info;
     private void Awake()
