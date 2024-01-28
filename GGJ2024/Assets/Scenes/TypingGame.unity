@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionScreen: {fileID: 1624659257}
-  gameTimer: {fileID: 1678630741}
+  gameTimer: {fileID: 611613398}
   questionText: {fileID: 730385078}
   question:
   - are you a flamingo
@@ -311,6 +311,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8887798405377556018, guid: 0f822945575344847a2627987457a943, type: 3}
   m_PrefabInstance: {fileID: 611613396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &611613398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
+  m_PrefabInstance: {fileID: 611613396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0cfe0402efbac438b56887cb37711f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &652115409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1616,17 +1627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1472355940}
   dateOutcome: {fileID: 8300000, guid: 7de0aa4e5425344c3a6eeaffbc8d3434, type: 3}
---- !u!114 &1678630741 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
-  m_PrefabInstance: {fileID: 611613396}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0cfe0402efbac438b56887cb37711f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1696162163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,7 +1787,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3040553c10215e24f8d12840dc08fca9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

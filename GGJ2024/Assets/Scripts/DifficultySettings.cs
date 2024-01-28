@@ -27,7 +27,7 @@ public class DifficultySettings : MonoBehaviour
     public float[] solveTimeInterval;
     public int[] questionCount;
 
-    public int difficulty = 2;
+    [HideInInspector] public int difficulty;
 
     private void Awake()
     {
@@ -45,9 +45,13 @@ public class DifficultySettings : MonoBehaviour
         if (scoreManager.GetScore() >= 7)
         {
             difficulty = 0;
-        } else if (scoreManager.GetScore() >= 4)
+        }
+        else if (scoreManager.GetScore() >= 4)
         {
             difficulty = 1;
-        } 
+        }
+        else difficulty = 2;
+        Debug.Log(difficulty);
+        Debug.Log(scoreManager.GetScore());
     }
 }

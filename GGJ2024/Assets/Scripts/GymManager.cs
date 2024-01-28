@@ -14,7 +14,7 @@ public class GymManager : MonoBehaviour
     [SerializeField] private GameObject successSprite;
 
     public AudioSource audioSource;
-    public AudioClip leftKey, rightKey, upKey, downKey;
+    public AudioClip leftKey, rightKey, upKey, downKey, correct, wrong;
 
     #region Private Variables
     private int promptLength;
@@ -108,6 +108,9 @@ public class GymManager : MonoBehaviour
     }
     private IEnumerator PlaySuccessAnim()
     {
+        Debug.Log("correct");
+        audioSource.clip = correct;
+        audioSource.Play();
         idleSprite.SetActive(false);
         successSprite.SetActive(true);
 
@@ -118,10 +121,17 @@ public class GymManager : MonoBehaviour
     }
     private bool CheckFinalInput()
     {
+
         // All green, score +1;
         foreach (GameObject go in currentPrompts)
         {
-            if (go.GetComponent<Image>().color != Color.white) return false;
+            if (go.GetComponent<Image>().color != Color.white){
+                Debug.Log("wrong");
+                audioSource.clip = wrong;
+                audioSource.Play();
+                return false;
+            } 
+
         }
         return true;
     }
@@ -168,7 +178,7 @@ public class GymManager : MonoBehaviour
         {
             audioSource.clip = upKey;
             audioSource.Play();
-            
+
             Debug.Log("Up Checked");
 
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
