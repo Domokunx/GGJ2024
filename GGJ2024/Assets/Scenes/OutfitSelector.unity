@@ -3082,6 +3082,22 @@ PrefabInstance:
       propertyPath: rounds.Array.data[2]
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: typingTimer.Array.data[0]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: typingTimer.Array.data[1]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: solveTimeInterval.Array.data[1]
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: solveTimeInterval.Array.data[2]
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
