@@ -172,7 +172,7 @@ public class OutfitScoreManager : MonoBehaviour
 
         totalScore = hatScore + clothScore + shoesScore;
 
-        scoreText.text = "Score: " + totalScore.ToString();
+        scoreText.text = "Rizz-meter: " + totalScore.ToString();
 
 
         partChanged = false;

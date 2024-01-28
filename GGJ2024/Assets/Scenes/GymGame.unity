@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 83cfa49c4dd0dcd4ea62ad23f4624e0f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1322,6 +1322,8 @@ MonoBehaviour:
   rightKey: {fileID: 8300000, guid: 2ad4aed889ad54adebf07b283a093608, type: 3}
   upKey: {fileID: 8300000, guid: 11a91d34c37544c2295463900cc3ceae, type: 3}
   downKey: {fileID: 8300000, guid: 48a2af482b26f4c469eca03c69e17bc9, type: 3}
+  correct: {fileID: 8300000, guid: 60a02d43a756747f2a7cf810cac35c02, type: 3}
+  wrong: {fileID: 8300000, guid: 78c2ed5061d604738bab476a09f7c3bb, type: 3}
 --- !u!4 &1596054375
 Transform:
   m_ObjectHideFlags: 0
