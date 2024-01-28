@@ -130,7 +130,7 @@ public class TypingManager : MonoBehaviour
 
     private void Failed()
     {
-        isMistake = true;
+        //isMistake = true;
 
 
         // change textColor
