@@ -8,7 +8,6 @@ using TMPro;
 public class TypingManager : MonoBehaviour
 {
     [SerializeField] private GameObject transitionScreen;
-    [SerializeField] private GameTimer gameTimer;
 
     [Header("Question Setting")]
     [SerializeField] private TextMeshProUGUI questionText;
@@ -49,6 +48,11 @@ public class TypingManager : MonoBehaviour
 
         transitionScreen.SetActive(false);
 
+        //isMistake = new bool[question.Length];
+        //for(int i = 0; i < question.Length; i++)
+        //{
+        //    isMistake[i] = false;
+        //}
         isMistake = false;
 
         birdSR = bird.GetComponent<SpriteRenderer>();
@@ -56,7 +60,6 @@ public class TypingManager : MonoBehaviour
 
         finished = false;
 
-        SetDifficulty();
 
         Output();
     }
@@ -75,6 +78,11 @@ public class TypingManager : MonoBehaviour
         if(Input.GetKeyDown(aString[inputNum].ToString()))
         {
             Correct();
+            //if(inputNum >= answer[questionIndex].Length)
+            //{
+            //    questionIndex++;
+            //    Output();
+            //}
         }   
         else if(Input.anyKeyDown && !Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -157,17 +165,7 @@ public class TypingManager : MonoBehaviour
 
     private void FinishGame()
     {
-        gameTimer.SetPaused(true);
-
         GameManager.rizzed[0] = true;
         StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
-    }
-
-    private void SetDifficulty()
-    {
-        Debug.Log(DifficultySettings.instance.difficulty);
-
-        int diffIndex = DifficultySettings.instance.difficulty;
-        gameTimer.SetTimeLimit(DifficultySettings.instance.typingTimer[diffIndex]);
     }
 }
