@@ -10,8 +10,9 @@ public class GameTimer : MonoBehaviour
 
     private Image timerImage;
     public float spendingTime = 0f;
-    private bool isPaused = false;
 
+    private bool isPaused = false;
+    private bool isFinished = false;
     /*
     public static class CoroutineUtil
     {
@@ -31,6 +32,7 @@ public class GameTimer : MonoBehaviour
         timerImage = GetComponent<Image>();
         transitionScreen.SetActive(false);
         isPaused = false;
+        isFinished = false;
         //StartCoroutine(PauseForSeconds());
     }
 
@@ -48,6 +50,7 @@ public class GameTimer : MonoBehaviour
 
             if (spendingTime > timeLimit)
             {
+                isFinished = true;
                 StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
             }
         }
@@ -64,6 +67,12 @@ public class GameTimer : MonoBehaviour
         Debug.Log(timeLimit);
 
     }
+
+    public bool GetIsFinished()
+    {
+        return isFinished;
+    }
+
 
     /*
     IEnumerator PauseForSeconds()

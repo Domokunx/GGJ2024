@@ -67,7 +67,7 @@ public class SelectDupe : MonoBehaviour
     void Update()
     {
         if(!MiniGameManager.miniGameStarted) return;
-
+        if (gameTimer.GetIsFinished()) return;
         switch (state)
         {
             case State.Idle:
