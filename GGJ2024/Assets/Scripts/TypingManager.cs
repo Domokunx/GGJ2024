@@ -64,6 +64,8 @@ public class TypingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!MiniGameManager.miniGameStarted) return;
+
         if (finished)
         {
             FinishGame();

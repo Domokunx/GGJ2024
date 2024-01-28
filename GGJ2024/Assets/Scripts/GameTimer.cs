@@ -8,6 +8,8 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private GameObject transitionScreen;
     [SerializeField] private int timeLimit = 60;
 
+    [SerializeField] private MiniGameManager miniGameManager;
+
     private Image timerImage;
     public float spendingTime = 0f;
     private bool isPaused = false;
@@ -35,6 +37,8 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        if (!MiniGameManager.miniGameStarted) return;
+
         if (!isPaused)
         {
             spendingTime += Time.deltaTime;

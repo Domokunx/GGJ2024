@@ -132,8 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 43403147}
-  - component: {fileID: 43403146}
   - component: {fileID: 43403148}
+  - component: {fileID: 43403149}
+  - component: {fileID: 43403146}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -188,6 +189,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 958085212}
   count: 3
+--- !u!114 &43403149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43403145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50167a304e5631e41822a2f9bc04ebe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &307829600
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionScreen: {fileID: 1345514738}
   timeLimit: 5
+  miniGameManager: {fileID: 43403149}
   spendingTime: 0
 --- !u!114 &353762709
 MonoBehaviour:

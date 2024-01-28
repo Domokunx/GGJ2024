@@ -14,7 +14,6 @@ public class CountDown : MonoBehaviour
     void Start()
     {
         countFinished = false;
-        StartCoroutine(Counting());
     }
 
     // Update is called once per frame
@@ -39,7 +38,7 @@ public class CountDown : MonoBehaviour
         return countFinished;
     }
 
-    IEnumerator Counting()
+    public IEnumerator Counting()
     {
         while (count >= 0)
         {

@@ -55,7 +55,7 @@ public class SelectDupe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!countDown.GetCountDownFinished()) return;
+        if(!MiniGameManager.miniGameStarted) return;
 
         switch (state)
         {
