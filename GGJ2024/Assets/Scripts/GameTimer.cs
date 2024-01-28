@@ -30,6 +30,7 @@ public class GameTimer : MonoBehaviour
     {
         timerImage = GetComponent<Image>();
         transitionScreen.SetActive(false);
+        isPaused = false;
         //StartCoroutine(PauseForSeconds());
     }
 
@@ -49,6 +50,11 @@ public class GameTimer : MonoBehaviour
                 StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
             }
         }
+    }
+
+    public void SetPaused(bool flag)
+    {
+        isPaused = flag;
     }
 
     /*

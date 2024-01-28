@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005cd1b88ad175a45ab255217d7e6049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionScreen: {fileID: 307829600}
   finishText: {fileID: 613540637}
   correctNum: 3
   zoomInSize: 2
@@ -162,7 +163,7 @@ MonoBehaviour:
   audioSource: {fileID: 640412937}
   correct: {fileID: 8300000, guid: 60a02d43a756747f2a7cf810cac35c02, type: 3}
   wrong: {fileID: 8300000, guid: 78c2ed5061d604738bab476a09f7c3bb, type: 3}
-  transitionScreen: {fileID: 307829600}
+  gameTimer: {fileID: 583333812}
 --- !u!4 &43403147
 Transform:
   m_ObjectHideFlags: 0
@@ -651,6 +652,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &583333812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
+  m_PrefabInstance: {fileID: 232771393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0cfe0402efbac438b56887cb37711f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &613540637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1713285769}
     m_Modifications:
+    - target: {fileID: 3853097423287832456, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190335
+      objectReference: {fileID: 0}
     - target: {fileID: 4980870687775558730, guid: d3b49730a8b78244d9e2a70082d90e3b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1267,11 +1283,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 232771394}
+  - {fileID: 1691558939}
   - {fileID: 613540638}
   - {fileID: 307829601}
   - {fileID: 1345514739}
-  - {fileID: 1691558939}
-  - {fileID: 232771394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

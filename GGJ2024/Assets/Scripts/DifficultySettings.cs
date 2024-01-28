@@ -6,6 +6,8 @@ public class DifficultySettings : MonoBehaviour
 {
     public static DifficultySettings instance;
 
+    private OutfitScoreManager scoreManager;
+
     // index 0 = easy, 1 = medium, 2 = hard
     [Header("Typing Game Settings")]
     [SerializeField] public float[] typingTimer;
@@ -30,5 +32,17 @@ public class DifficultySettings : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public void SetDifficulty()
+    {
+        scoreManager = FindAnyObjectByType<OutfitScoreManager>();
+        if (scoreManager.GetScore() >= 7)
+        {
+            difficulty = 2;
+        } else if (scoreManager.GetScore() >= 4)
+        {
+            difficulty = 1;
+        } 
     }
 }
