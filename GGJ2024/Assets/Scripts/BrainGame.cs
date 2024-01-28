@@ -110,6 +110,8 @@ public class BrainGame : MonoBehaviour
     }
     void Update()
     {
+        if (!MiniGameManager.miniGameStarted) return;
+
         if (timeToNextSolve < Time.timeSinceLevelLoad)
         {
             EnemySolve();
