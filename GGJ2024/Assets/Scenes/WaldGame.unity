@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: miniGameManager
       value: 
       objectReference: {fileID: 43403149}
+    - target: {fileID: 3817853777290121466, guid: 0f822945575344847a2627987457a943, type: 3}
+      propertyPath: transitionScreen
+      value: 
+      objectReference: {fileID: 1345514738}
     - target: {fileID: 6174574474499525876, guid: 0f822945575344847a2627987457a943, type: 3}
       propertyPath: m_Name
       value: Timer
