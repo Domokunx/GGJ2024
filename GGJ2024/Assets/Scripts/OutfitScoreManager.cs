@@ -19,10 +19,11 @@ public class OutfitScoreManager : MonoBehaviour
         public int[] scoreMini;
     }
 
-    public static List<Outfit> outfitsData = new List<Outfit>();
+    private static List<Outfit> outfitsData = new List<Outfit>();
+    private static bool loaded = false;
+    private static int currentDateNum = 0;
 
     private int totalScore;
-    private int currentDateNum;
 
     bool partChanged;
 
@@ -30,15 +31,32 @@ public class OutfitScoreManager : MonoBehaviour
     private const int PART_NUM = 3;
 
     private string[] partName = new string[PART_NUM];
+
+    private void Awake()
+    {
+        ReadData();
+        Debug.Log("outfits score data size:" + outfitsData.Count);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        ReadData();
-        currentDateNum = GameManager.nextDate - 1;
-
         totalScore = 0;
 
         partChanged = false;
+
+        currentDateNum++;
+
+        for (int i = 0; i < partName.Length; i++)
+        {
+            partName[i] = "";
+        }
+        if(currentDateNum > MINIGAME_NUM)
+        {
+            Destroy(this);
+        }
+
     }
 
     // Update is called once per frame
@@ -53,6 +71,7 @@ public class OutfitScoreManager : MonoBehaviour
 
     private void ReadData()
     {
+        if (loaded) return;
 
         TextAsset csvFile;
 
@@ -87,10 +106,7 @@ public class OutfitScoreManager : MonoBehaviour
 
         }
 
-        for(int i = 0; i < MINIGAME_NUM; i++)
-        {
-            Debug.Log(outfitsData[0].scoreMini[i]);
-        }
+        loaded = true;
     }
 
     void SetPartName(ItemSlot item, int partNum)
@@ -113,16 +129,40 @@ public class OutfitScoreManager : MonoBehaviour
             {
                 if (outfitsData[j].name + "(Clone)" == partName[i])
                 {
-                    Debug.Log("correct name");
+                    //Debug.Log("correct name");
                     outfitsIndex[i] = j;
                     break;
                 }
 
             }
         }
-        int hatScore = outfitsData[outfitsIndex[0]].scoreMini[currentDateNum - 1];
-        int clothScore = outfitsData[outfitsIndex[1]].scoreMini[currentDateNum - 1];
-        int shoesScore = outfitsData[outfitsIndex[2]].scoreMini[currentDateNum - 1];
+
+        int hatScore   = 0;
+        int clothScore = 0;
+        int shoesScore = 0;
+
+        for (int i = 0; i < partName.Length; i++)
+        {
+            Debug.Log(partName[i]);
+        }
+
+        if (partName[0] != "")
+        {
+            hatScore = outfitsData[outfitsIndex[0]].scoreMini[currentDateNum - 1];
+        }
+        if (partName[1] != "")
+        {
+            clothScore = outfitsData[outfitsIndex[1]].scoreMini[currentDateNum - 1];
+
+        }
+        if (partName[2] != "")
+        {
+            shoesScore = outfitsData[outfitsIndex[2]].scoreMini[currentDateNum - 1];
+        }
+
+        Debug.Log("HatScore:" + hatScore);
+        Debug.Log("ClothScore:" + clothScore);
+        Debug.Log("ShoesScore:" + shoesScore);
 
         totalScore = hatScore + clothScore + shoesScore;
 
