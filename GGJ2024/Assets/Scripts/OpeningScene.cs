@@ -8,9 +8,8 @@ public class OpeningScene : MonoBehaviour
 {
     public TextMeshProUGUI mainTextElement;
     public TextMeshProUGUI promptTextElement;
-    public TextMeshProUGUI continueButtonText;
     public Image imageElement;
-    public Button continueButton;
+    public GameObject continueButton;
 
     public string[] textArray;
     public Sprite[] imageArray;
@@ -25,8 +24,8 @@ public class OpeningScene : MonoBehaviour
     void Start()
     {
         NextSet();
-        continueButton.enabled = false;
-        continueButtonText.enabled = false;
+        continueButton.gameObject.SetActive(false);
+
 
         /*
         if (typingSource == null)
@@ -69,7 +68,6 @@ public class OpeningScene : MonoBehaviour
             return;
         }
 
-        // Start typing effect for the new set
         StartCoroutine(TypingEffect());
         UpdateImage();
     }
@@ -92,13 +90,11 @@ public class OpeningScene : MonoBehaviour
 
             if (currentIndex == textArray.Length - 1)
             {
-                continueButton.enabled = true;
-                continueButtonText.enabled = true;
+                continueButton.gameObject.SetActive(true);
             }
 
             isTyping = false;
 
-            // Show space prompt after typing is complete (except for the last line)
             if (currentIndex < textArray.Length - 1)
             {
                 ShowSpacePrompt();
@@ -124,10 +120,9 @@ public class OpeningScene : MonoBehaviour
         Outline outline = mainTextElement.GetComponent<Outline>();
         if (outline != null)
         {
-            // Adjust the outline properties
             outline.enabled = true;
-            outline.effectColor = Color.red; // Change the outline color to red
-            outline.effectDistance = new Vector2(2f, -2f); // Adjust the outline size
+            outline.effectColor = Color.red; 
+            outline.effectDistance = new Vector2(2f, -2f);
         }
     }
 }

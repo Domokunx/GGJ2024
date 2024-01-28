@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/OpeningScene.unity
+    guid: c1af327d270190647a78d40f53dbce39
+  - enabled: 1
     path: Assets/Scenes/OutfitSelector.unity
     guid: e780c3a3168282047b675ee69198e4a2
   - enabled: 1
