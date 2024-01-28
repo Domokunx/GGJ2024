@@ -85,6 +85,8 @@ public class BrainGame : MonoBehaviour
     };
 
     private int[] questionIndices;
+
+    private bool isFinished;
     #endregion
 
     private void Awake()
@@ -108,7 +110,7 @@ public class BrainGame : MonoBehaviour
 
         winTransitionScreen.SetActive(false);
 
-
+        isFinished = false;
     }
     void Update()
     {
@@ -139,6 +141,7 @@ public class BrainGame : MonoBehaviour
 
         if (enemyIndex + 1  ==  questionCount)
         {
+            isFinished = true;
             StartCoroutine(ToSelectDateScene(loseTransitionScreen));
             return;
         }
@@ -148,6 +151,8 @@ public class BrainGame : MonoBehaviour
     }
     public void CheckInput()
     {
+        if (isFinished) return;
+
         if (string.IsNullOrWhiteSpace(inputField.text))
         {
             inputField.text = string.Empty;
@@ -159,7 +164,7 @@ public class BrainGame : MonoBehaviour
         {
             if (playerIndex + 1 == questionCount) 
             {
-
+                isFinished = true;
                 GameManager.rizzed[3] = true;
                 StartCoroutine(ToSelectDateScene(winTransitionScreen));
                 timeToNextSolve += 999999f;

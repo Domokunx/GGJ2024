@@ -7,6 +7,7 @@ public class OutfitSelectorManager : MonoBehaviour
 {
     [SerializeField] private Button infoBtn;
     [SerializeField] private Button closeBtn;
+    [SerializeField] private GameObject panel;
     [SerializeField] private Button nextBtn;
     [SerializeField] private GameObject[] infoCards;
     [SerializeField] private Transform infoCardLocation;
@@ -25,6 +26,7 @@ public class OutfitSelectorManager : MonoBehaviour
         audioSource.Play();
         info.SetActive(true);
         closeBtn.gameObject.SetActive(true);
+        panel.gameObject.SetActive(true);
     }
 
     public void HideInfo()
@@ -33,6 +35,7 @@ public class OutfitSelectorManager : MonoBehaviour
         audioSource.Play();
         info.SetActive(false);
         closeBtn.gameObject.SetActive(false);
+        panel.gameObject.SetActive(false);
 
     }
 
