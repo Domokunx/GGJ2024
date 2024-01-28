@@ -9,6 +9,9 @@ public class PickYourDateManager : MonoBehaviour
 {
     [SerializeField] private Toggle[] toggles;
     [HideInInspector] public static bool[] selected;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip click, correct;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,8 @@ public class PickYourDateManager : MonoBehaviour
         {
             if (toggles[i].isOn)
             {
+                audioSource.clip = correct;
+                audioSource.Play();
                 selected[i] = true;
             }
         }
