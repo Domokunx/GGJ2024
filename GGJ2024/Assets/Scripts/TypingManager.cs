@@ -56,8 +56,7 @@ public class TypingManager : MonoBehaviour
 
         finished = false;
 
-        gameTimer.SetTimeLimit(
-            DifficultySettings.instance.typingTimer[DifficultySettings.instance.difficulty]);
+        SetDifficulty();
 
         Output();
     }
@@ -162,5 +161,13 @@ public class TypingManager : MonoBehaviour
 
         GameManager.rizzed[0] = true;
         StartCoroutine(GameManager.BackToOutfitSelector(transitionScreen));
+    }
+
+    private void SetDifficulty()
+    {
+        Debug.Log(DifficultySettings.instance.difficulty);
+
+        int diffIndex = DifficultySettings.instance.difficulty;
+        gameTimer.SetTimeLimit(DifficultySettings.instance.typingTimer[diffIndex]);
     }
 }
