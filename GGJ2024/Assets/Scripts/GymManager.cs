@@ -19,6 +19,9 @@ public class GymManager : MonoBehaviour
     [SerializeField] private GameObject idleSprite;
     [SerializeField] private GameObject successSprite;
 
+    public AudioSource audioSource;
+    public AudioClip leftKey, rightKey, upKey, downKey;
+
     #region Private Variables
     private int[] inputs;
     private int FIRST_ELEMENT_XPOSITION;
@@ -131,23 +134,36 @@ public class GymManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && inputs[elementIndex] == 276)
         {
+            audioSource.clip = leftKey;
+            audioSource.Play();
+
             Debug.Log("Left Checked");
+
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) && inputs[elementIndex] == 275)
         {
+            audioSource.clip = rightKey;
+            audioSource.Play();
+
             Debug.Log("Right Checked");
 
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && inputs[elementIndex] == 274)
         {
+            audioSource.clip = downKey;
+            audioSource.Play();
+
             Debug.Log("Down Checked");
 
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && inputs[elementIndex] == 273)
         {
+            audioSource.clip = upKey;
+            audioSource.Play();
+            
             Debug.Log("Up Checked");
 
             currentPrompts[elementIndex++].GetComponent<Image>().color = Color.white;

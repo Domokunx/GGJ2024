@@ -34,6 +34,9 @@ public class TypingManager : MonoBehaviour
 
     private bool finished;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip restaurantKey, correct, wrong;
+
 
     // Start is called before the first frame update
     void Start()
@@ -106,10 +109,16 @@ public class TypingManager : MonoBehaviour
 
     private void Correct()
     {
+        audioSource.clip = restaurantKey;
+        audioSource.Play();
+
         inputNum++;
 
         if (inputNum >= answer[questionIndex].Length)
         {
+            audioSource.clip = correct;
+            audioSource.Play();
+
             ChangeSprite();
             questionIndex++;
             Output();
@@ -131,7 +140,8 @@ public class TypingManager : MonoBehaviour
     private void Failed()
     {
         //isMistake = true;
-
+        audioSource.clip = wrong;
+        audioSource.Play();
 
         // change textColor
         questionText.text = "<color=#FFFFFF>" + qString.Substring(0, inputNum) + "</color>" +

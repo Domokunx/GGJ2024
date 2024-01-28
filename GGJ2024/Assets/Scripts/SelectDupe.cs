@@ -13,6 +13,10 @@ public class SelectDupe : MonoBehaviour
     [SerializeField] private float zoomOutSize = 5f;
     [SerializeField] private float zoomTime = 0.1f;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip correct, wrong;
+
+
     private GameObject hitObject;
     private Spawner spawner;
     private bool finished;
@@ -107,10 +111,15 @@ public class SelectDupe : MonoBehaviour
             if (hitObject.tag != "Date")
             {
                 Destroy(hitObject);
+                audioSource.clip = wrong;
+                audioSource.Play();
             }
             else
             {
                 correctCount++;
+
+                audioSource.clip = correct;
+                audioSource.Play();
 
                 // change state
                 state = State.ZoomIn;
@@ -134,6 +143,7 @@ public class SelectDupe : MonoBehaviour
     
     private void ZoomIn(GameObject gameObject)
     {
+
         Vector3 targetPos = gameObject.transform.position;
         targetPos.z = camera.transform.position.z;
         // camera zoom

@@ -159,6 +159,9 @@ MonoBehaviour:
   zoomInSize: 2
   zoomOutSize: 5
   zoomTime: 0.05
+  audioSource: {fileID: 640412937}
+  correct: {fileID: 8300000, guid: 60a02d43a756747f2a7cf810cac35c02, type: 3}
+  wrong: {fileID: 8300000, guid: 78c2ed5061d604738bab476a09f7c3bb, type: 3}
   transitionScreen: {fileID: 307829600}
 --- !u!4 &43403147
 Transform:
@@ -327,6 +330,7 @@ GameObject:
   - component: {fileID: 307829601}
   - component: {fileID: 307829603}
   - component: {fileID: 307829602}
+  - component: {fileID: 307829604}
   m_Layer: 5
   m_Name: SuccessTransition
   m_TagString: Untagged
@@ -391,6 +395,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307829600}
   m_CullTransparentMesh: 1
+--- !u!114 &307829604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307829600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c1a969e495641a1a060007d1e31c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 640412937}
+  dateOutcome: {fileID: 8300000, guid: 363691f41326e4bb990c3db221bd183e, type: 3}
 --- !u!1 &409939233
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +668,7 @@ GameObject:
   - component: {fileID: 640412936}
   - component: {fileID: 640412937}
   m_Layer: 0
-  m_Name: SFX Manager
+  m_Name: SFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -846,6 +864,7 @@ GameObject:
   - component: {fileID: 1345514739}
   - component: {fileID: 1345514741}
   - component: {fileID: 1345514740}
+  - component: {fileID: 1345514742}
   m_Layer: 5
   m_Name: FailTransition
   m_TagString: Untagged
@@ -910,6 +929,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345514738}
   m_CullTransparentMesh: 1
+--- !u!114 &1345514742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345514738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c1a969e495641a1a060007d1e31c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 640412937}
+  dateOutcome: {fileID: 8300000, guid: 363691f41326e4bb990c3db221bd183e, type: 3}
 --- !u!1001 &1691558938
 PrefabInstance:
   m_ObjectHideFlags: 0
