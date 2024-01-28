@@ -7,23 +7,27 @@ public class OutfitSelectorManager : MonoBehaviour
 {
     [SerializeField] private Button infoBtn;
     [SerializeField] private Button closeBtn;
-    [SerializeField] private GameObject infoImg;
     [SerializeField] private Button nextBtn;
+    [SerializeField] private GameObject[] infoCards;
+    [SerializeField] private Transform infoCardLocation;
 
-    // Start is called before the first frame update
-    void Start()
+    private GameObject info;
+    private void Awake()
     {
-        infoImg.SetActive(false);
+        info = Instantiate(infoCards[GameManager.nextDate - 3], infoCardLocation);
+        HideInfo();
     }
-
     public void ShowInfo()
     {
-        infoImg.SetActive(true);
+        info.SetActive(true);
+        closeBtn.gameObject.SetActive(true);
     }
 
     public void HideInfo()
     {
-        infoImg.SetActive(false);
+        info.SetActive(false);
+        closeBtn.gameObject.SetActive(false);
+
     }
 
     public void DisableSpam()
