@@ -946,7 +946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &718383372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,7 +1696,7 @@ MonoBehaviour:
 
     domokunx
 
-    Siraph
+    Kota Matsuo
 
 
     LEAD ARTISTS
@@ -1707,7 +1707,11 @@ MonoBehaviour:
 
 
     BGM
-    by Daniel '
+    COMPOSER
+
+    Daniel
+
+    (wavepoolmusic.com)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2a2403771bcd452e9b55983dda69cc1, type: 2}
   m_sharedMaterial: {fileID: -8967138767714248244, guid: e2a2403771bcd452e9b55983dda69cc1, type: 2}
