@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         transitionScreen.SetActive(false);
     }
 
@@ -41,10 +40,5 @@ public class GameManager : MonoBehaviour
         // Move back to outfitSelector
         
         SceneManager.LoadScene("OutfitSelector");
-    }
-
-    private void ResetVariables()
-    {
-        
     }
 }

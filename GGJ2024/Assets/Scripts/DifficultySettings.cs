@@ -27,11 +27,16 @@ public class DifficultySettings : MonoBehaviour
     public float[] solveTimeInterval;
     public int[] questionCount;
 
-    public int difficulty = 0; // Where get outfitscore
+    public int difficulty = 2;
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetDifficulty()
@@ -39,7 +44,7 @@ public class DifficultySettings : MonoBehaviour
         scoreManager = FindAnyObjectByType<OutfitScoreManager>();
         if (scoreManager.GetScore() >= 7)
         {
-            difficulty = 2;
+            difficulty = 0;
         } else if (scoreManager.GetScore() >= 4)
         {
             difficulty = 1;
