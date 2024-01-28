@@ -36,6 +36,8 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(timeLimit);
+
         if (!MiniGameManager.miniGameStarted) return;
 
         if (!isPaused)
@@ -55,6 +57,11 @@ public class GameTimer : MonoBehaviour
     public void SetPaused(bool flag)
     {
         isPaused = flag;
+    }
+
+    public void SetTimeLimit(int time)
+    {
+        timeLimit = time;
     }
 
     /*
