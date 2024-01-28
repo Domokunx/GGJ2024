@@ -10,11 +10,11 @@ public class DifficultySettings : MonoBehaviour
 
     // index 0 = easy, 1 = medium, 2 = hard
     [Header("Typing Game Settings")]
-    [SerializeField] public float[] typingTimer;
+    public int[] typingTimer;
 
     [Space]
     [Header("Waldo Game Settings")]
-    public float[] waldoTimer;
+    public int[] waldoTimer;
 
     [Space]
     [Header("Gym Game Settings")]

@@ -56,6 +56,10 @@ public class SelectDupe : MonoBehaviour
         state = State.Idle;
         zoomTimer = 0f;
 
+        gameTimer.SetTimeLimit(
+            DifficultySettings.instance.waldoTimer[DifficultySettings.instance.difficulty]);
+
+
         transitionScreen.SetActive(false);
     }
 
