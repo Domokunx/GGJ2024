@@ -3070,6 +3070,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DifficultySettings
       objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: rounds.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: rounds.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274756284493934399, guid: db5ff7d013014cf45847f16c805c5716, type: 3}
+      propertyPath: rounds.Array.data[2]
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
