@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countDownText: {fileID: 759289741}
   count: 3
+  whatToDo: Go!
 --- !u!114 &1596054377
 MonoBehaviour:
   m_ObjectHideFlags: 0
